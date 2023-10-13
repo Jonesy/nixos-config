@@ -19,6 +19,7 @@
     lazygit
     _1password
     _1password-gui
+    eza
 
     # NEOVIM
     neovim
@@ -29,6 +30,7 @@
     ripgrep
     fd
     xclip
+
     # LSPs
     nil
     gopls
@@ -36,8 +38,10 @@
     rust-analyzer
     nodePackages_latest.typescript-language-server
     zls
+
     # Linters
     lua54Packages.luacheck
+
     # Formatters
     stylua
     prettierd

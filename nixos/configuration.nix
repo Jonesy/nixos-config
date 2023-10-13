@@ -103,6 +103,7 @@
     })
   ];
 
+  # Environmental
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
@@ -121,10 +122,16 @@
       dunst
       waybar
     ];
-  # Environmental
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
+  environment.shellAliases = {
+    ll = "eza -l --icons --header";
+    lla = "eza -l -a --icons --header";
+    zj = "zellij";
+    lg = "lazygit";
+  };
+
 
   # Enable "experimental" flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
