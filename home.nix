@@ -9,8 +9,11 @@
   home.packages = with pkgs; [
     firefox
     thunderbird
+    signal-desktop
+
     # dev tools
     alacritty
+    kitty
     zellij
     gh
     lazygit
@@ -19,7 +22,9 @@
 
     # NEOVIM
     neovim
+    tree-sitter
     git
+    nodejs_20
     gcc
     ripgrep
     fd
@@ -45,7 +50,6 @@
 
   home.stateVersion = "23.05"; # Did you read the comment?
 
-  # CONFIGS
   programs.git = {
     enable = true;
     userName = "Joshua Jones";

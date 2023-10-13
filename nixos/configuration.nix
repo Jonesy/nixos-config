@@ -42,6 +42,14 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Sceensharing
+  # services.dbus.enable = true;
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -79,11 +87,44 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # CONFIGS
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  programs.ssh.askPassword = "";
+
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs
+        (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+        });
+    })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      vim
+      hyprland
+      swww
+      meson
+      # xdg-desktop-portal-gtk
+      # xdg-desktop-portal-hyprland
+      xwayland
+      # App-launchers
+      rofi-wayland
+      wofi
+      # Notifications
+      dunst
+      waybar
+    ];
+  # Environmental
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Enable "experimental" flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
