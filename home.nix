@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     firefox
+    ungoogled-chromium
     thunderbird
     signal-desktop
 
@@ -80,7 +81,7 @@
           family = "BlexMono Nerd Font";
           style = "Bold Italic";
         };
-        size = 16;
+        size = 14;
       };
     };
   };
