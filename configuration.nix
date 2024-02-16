@@ -75,62 +75,30 @@
     isNormalUser = true;
     description = "Joshua Jones";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    ];
+    packages = [ ];
   };
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
-  ];
 
   nixpkgs.config.allowUnfree = true;
-
-  # CONFIGS
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  programs.ssh.askPassword = "";
-
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs
-        (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-        });
-    })
-  ];
 
   # Environmental
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      vim
-      hyprland
-      swww
-      meson
-      # xdg-desktop-portal-gtk
-      # xdg-desktop-portal-hyprland
-      xwayland
-      # App-launchers
-      rofi-wayland
-      wofi
-      # Notifications
-      dunst
-      waybar
-    ];
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-  environment.shellAliases = {
-    ll = "eza -l --icons --header";
-    lla = "eza -l -a --icons --header";
-    zj = "zellij";
-    lg = "lazygit";
-  };
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    zsh
+    git
+  ];
+
+  # Set up fish as default shell
+  environment.shells = with pkgs; [ fish ];
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
+
+  fonts.fontDir.enable = true;
+
+  environment.sessionVariables = { };
+  environment.shellAliases = { };
 
 
   # Enable "experimental" flakes support
@@ -143,7 +111,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

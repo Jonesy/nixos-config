@@ -1,8 +1,7 @@
 {
-  description = "NixOS configuration (Home Manager + Flakes)";
+  description = "Home Manager configuration of jjones";
 
   inputs = {
-    # TODO: See if it's possible to have access to stable for a few
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -10,31 +9,22 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
-        jjonesNixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-
-          modules = [
-            ./nixos/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jjones = import ./home.nix;
-            }
-          ];
+        inherit pkgs;
+        nixos = lib.nixosSystem {
+          modules = [ ./configuration.nix ];
         };
+      };
+      homeConfigurations."jjones" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
       };
     };
 }
