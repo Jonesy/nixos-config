@@ -20,6 +20,7 @@
   };
 
   home.packages = with pkgs; [
+    apostrophe
     firefox
     chromium
     signal-desktop
@@ -122,7 +123,7 @@
           family = "BlexMono Nerd Font";
           style = "Bold Italic";
         };
-        size = 14;
+        size = 16;
       };
       # TODO: Get my old MacOS CMD+K -> clear keybinding
     };
