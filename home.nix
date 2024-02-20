@@ -26,12 +26,15 @@
     _1password
     _1password-gui
     eza
+    bat
 
     # Development
     alacritty
     starship
     git
     lazygit
+    gh
+    glab
     gcc
     ripgrep
     fd
@@ -147,7 +150,6 @@
 
   programs.zellij = {
     enable = true;
-    # enableFishIntegration = true;
     settings = {
       default_layout = "compact";
       default_shell = "fish";
