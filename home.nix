@@ -155,6 +155,7 @@
       default_layout = "compact";
       default_shell = "fish";
       theme = "catpupuccin-mocha";
+      copy_command = "xclip -selection clipboard";
     };
   };
 }
