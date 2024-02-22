@@ -88,6 +88,8 @@
     wget
     zsh
     git
+    gnome.gnome-tweaks
+    gnomeExtensions.user-themes
   ];
 
   # Set up fish as default shell

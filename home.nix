@@ -123,7 +123,7 @@
           family = "BlexMono Nerd Font";
           style = "Bold Italic";
         };
-        size = 16;
+        size = 14;
       };
       # TODO: Get my old MacOS CMD+K -> clear keybinding
     };
