@@ -17,6 +17,14 @@
     # "org/gnome/desktop/interface" = {
     #   scaling-factor = lib.hm.gvariant.mkUint32 2;
     # };
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+    };
+
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "palelight";
+    };
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
@@ -34,6 +42,8 @@
 
     # GNOME
     gnomeExtensions.user-themes
+    gnomeExtensions.dash-to-panel
+    palenight-theme
 
     # Development
     alacritty
