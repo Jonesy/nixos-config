@@ -13,16 +13,28 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Orchis";
+  #     package = pkgs.orchis-theme;
+  #   };
+  # };
+
   dconf.settings = {
     # "org/gnome/desktop/interface" = {
     #   scaling-factor = lib.hm.gvariant.mkUint32 2;
     # };
     "org/gnome/shell" = {
       disable-user-extensions = false;
+      enabled-extensions = [
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "dash-to-panel@jderose9.github.com"
+      ];
     };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = "palelight";
+      name = "palenight";
     };
 
     "org/gnome/desktop/interface" = {
