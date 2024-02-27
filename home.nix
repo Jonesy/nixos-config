@@ -14,8 +14,11 @@
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   dconf.settings = {
+    # "org/gnome/desktop/interface" = {
+    #   scaling-factor = lib.hm.gvariant.mkUint32 2;
+    # };
     "org/gnome/desktop/interface" = {
-      scaling-factor = lib.hm.gvariant.mkUint32 2;
+      color-scheme = "prefer-dark";
     };
   };
 
@@ -29,6 +32,9 @@
     eza
     bat
 
+    # GNOME
+    gnomeExtensions.user-themes
+
     # Development
     alacritty
     starship
@@ -40,6 +46,7 @@
     ripgrep
     fd
     xclip
+    any-nix-shell
 
     # NeoVim
     neovim
@@ -92,6 +99,7 @@
 
   # TODO: Figure out font scaling, maybe I just install hyprland
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
+  # see also https://github.com/Hoverbear-Consulting/flake/blob/f6a2afd6646508727578552c8620391f4ef02e36/users/ana/home.nix#L47
   # programs.dconf = {
   #   enable = true;
   #   programs.dconf.profiles.gdm.database = [{
@@ -134,12 +142,14 @@
     enable = true;
     interactiveShellInit = ''
       starship init fish | source
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
     '';
     shellAliases = {
       zj = "zellij";
       lg = "lazygit";
       ll = "eza -l --icons --header";
       lla = "eza -l -a --icons --header";
+      cl = "clear";
     };
   };
 
@@ -157,5 +167,9 @@
       theme = "catpupuccin-mocha";
       copy_command = "xclip -selection clipboard";
     };
+  };
+
+  programs.starship = {
+    enable = true;
   };
 }
