@@ -31,6 +31,10 @@
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "dash-to-panel@jderose9.github.com"
       ];
+      favorite-apps = [
+        "alacritty.desktop"
+        "firefox.desktop"
+      ];
     };
 
     "org/gnome/shell/extensions/user-theme" = {
