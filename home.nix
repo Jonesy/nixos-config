@@ -3,6 +3,7 @@
 {
   home.username = "jjones";
   home.homeDirectory = "/home/jjones";
+  home.sessionVariables.GTK_THEME = "Orchis-Dark-Compact";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -13,13 +14,37 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  # gtk = {
-  #   enable = true;
-  #   theme = {
-  #     name = "Orchis";
-  #     package = pkgs.orchis-theme;
-  #   };
-  # };
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Orchis-Dark-Compact";
+      package = pkgs.orchis-theme;
+      # name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      # package = pkgs.catppuccin-gtk.override {
+      #   accents = [ "blue" ];
+      #   size = "compact";
+      #   tweaks = [ "rimless" "black" ];
+      #   variant = "macchiato";
+      # };
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
+
+  # Now symlink the `~/.config/gtk-4.0/` folder declaratively:
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+  };
 
   dconf.settings = {
     # "org/gnome/desktop/interface" = {
@@ -38,7 +63,7 @@
     };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = "palenight";
+      name = "Orchis-Dark-Compact";
     };
 
     "org/gnome/desktop/interface" = {
