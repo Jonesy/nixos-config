@@ -94,6 +94,7 @@
     gh
     glab
     gcc
+    gnumake42
     ripgrep
     fd
     xclip
@@ -201,6 +202,7 @@
       ll = "eza -l --icons --header";
       lla = "eza -l -a --icons --header";
       cl = "clear";
+      nd = "nix flake --command fish";
     };
   };
 
@@ -208,6 +210,10 @@
     enable = true;
     userName = "Joshua Jones";
     userEmail = "joshua@general-metrics.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      core.editor = "nvim";
+    };
   };
 
   programs.zellij = {
