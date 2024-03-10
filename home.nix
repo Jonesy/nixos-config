@@ -202,7 +202,7 @@
       ll = "eza -l --icons --header";
       lla = "eza -l -a --icons --header";
       cl = "clear";
-      nd = "nix flake --command fish";
+      nd = "nix develop --command fish";
     };
   };
 
