@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, fonts, ... }:
 
 {
   home.username = "jjones";
@@ -125,8 +125,17 @@
     nixpkgs-fmt
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" "IosevkaTerm" ]; })
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "IBMPlexMono"
+        "Iosevka"
+        "IosevkaTerm"
+        "JetBrainsMono"
+      ];
+    })
   ];
+
+  fonts.fontconfig.enable = true;
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -183,7 +192,7 @@
           family = "IosevkaTerm Nerd Font";
           style = "Bold Italic";
         };
-        size = 14;
+        size = 16;
       };
       # TODO: Get my old MacOS CMD+K -> clear keybinding
     };
