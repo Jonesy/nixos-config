@@ -125,7 +125,7 @@
     nixpkgs-fmt
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" "IosevkaTerm" ]; })
   ];
 
   home.file = {
@@ -168,19 +168,19 @@
       };
       font = {
         normal = {
-          family = "BlexMono Nerd Font";
+          family = "IosevkaTerm Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "BlexMono Nerd Font";
+          family = "IosevkaTerm Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "BlexMono Nerd Font";
+          family = "IosevkaTerm Nerd Font";
           style = "Italic";
         };
         bold_italic = {
-          family = "BlexMono Nerd Font";
+          family = "IosevkaTerm Nerd Font";
           style = "Bold Italic";
         };
         size = 14;
