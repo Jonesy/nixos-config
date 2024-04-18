@@ -137,6 +137,14 @@
 
   fonts.fontconfig.enable = true;
 
+  # fonts.fontconfig.localConf = ''
+  #   <?xml version='1.0'?>
+  #   <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+  #   <fontconfig>
+  #     <dir>~/.nix-profile/share/fonts/</dir>
+  #   </fontconfig>
+  # '';
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
