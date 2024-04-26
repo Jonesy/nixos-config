@@ -99,6 +99,8 @@
     fd
     xclip
     any-nix-shell
+    nix-prefetch
+    glow # Markdown preview
 
     # NeoVim
     neovim
