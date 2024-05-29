@@ -26,12 +26,17 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
+  # Sway Setup
+  # programs.sway.enable = true;
+  security.polkit.enable = true;
+  hardware.opengl.enable = true;
+
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
@@ -54,10 +59,10 @@
   programs.dconf.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  # services.xserver = {
+  #   layout = "us";
+  #   xkbVariant = "";
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -72,7 +77,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -109,6 +114,7 @@
     zsh
     git
     gnome.gnome-tweaks
+    mako
   ];
 
   # Set up fish as default shell
@@ -120,7 +126,6 @@
 
   environment.sessionVariables = { };
   environment.shellAliases = { };
-
 
   # Enable "experimental" flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

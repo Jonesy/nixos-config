@@ -14,6 +14,77 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  # Sway + Wayland
+  # Good reference: https://github.com/Enzime/dotfiles-nix/blob/ba28c8e0902bbb3e1fc9b4d04cd8b4804e8ddcc4/modules/sway.nix#L159
+  wayland.windowManager.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    config = rec {
+      modifier = "Mod4";
+      terminal = "alacritty";
+      output = {
+        "Virtual-1" = {
+          mode = "1920x1080@60Hz";
+        };
+      };
+      startup = [
+        { command = lib.getExe' config.services.mako.package "mako"; }
+        { command = "firefox"; }
+      ];
+      # TODO: Wire up wofi
+      # menu = "\${pkgs.wofi}/bin/dmenu_path | \${pkgs.dmenu}/bin/dmenu | \${pkgs.findutils}/bin/xargs swaymsg exec --";
+      keybindings =
+        let
+          modifier =
+            config.wayland.windowManager.sway.config.modifier;
+        in
+        lib.mkOptionDefault {
+          # "${modifier}+d" = "exec ${pkgs.wofi} --show run --prompt=Run";
+        };
+      input."type:touchpad" = {
+        tap = "enabled";
+        natural_scroll = "enabled";
+      };
+    };
+    # exec,wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --style=$HOME/.config/wofi.css --term=footclient --prompt=Run
+    # extraConfig = ''
+    #   input 1267:12792:ELAN067B:00_04F3:31F8_Touchpad {
+    #       natural_scroll enabled
+    #   }
+    # '';
+  };
+
+  # Notifications Daemon
+  services.mako.enable = true;
+  services.mako.defaultTimeout = 5000;
+  services.mako.backgroundColor = "#0d0c0c";
+  services.mako.borderColor = "#e61f00";
+  services.mako.padding = "10,5,10,10";
+
+  # Waybar 
+  programs.waybar.settings = [{
+    # modules-left = [ "sway/workspaces" "sway/mode" ];
+    # modules-center = [ "sway/window" ];
+    # modules-right = [ "idle_inhibitor" "battery" "clock" "tray" ];
+    # "sway/window" = { max-length = 50; };
+    battery = {
+      format = "{capacity}% {icon}";
+      format-icons = [ "" "" "" "" "" ];
+    };
+    clock = {
+      format = "{:%a %b %d %I:%M:%S %p}";
+      interval = 1;
+    };
+    # idle_inhibitor = {
+    #   format = "{icon}";
+    #   format-icons = {
+    #     activated = "";
+    #     deactivated = "";
+    #   };
+    # };
+  }];
+
+  # GTK Settings
   gtk = {
     enable = true;
     theme = {
@@ -85,6 +156,12 @@
     gnomeExtensions.user-themes
     gnomeExtensions.dash-to-panel
     palenight-theme
+
+    # Window Manager
+    wl-clipboard
+    shotman
+    waybar
+    wofi
 
     # Development
     alacritty
@@ -211,10 +288,6 @@
   # See reference here: https://nixos.wiki/wiki/Fish
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      starship init fish | source
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-    '';
     shellAliases = {
       zj = "zellij";
       lg = "lazygit";
@@ -247,5 +320,22 @@
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.wofi = {
+    enable = true;
+    settings = {
+      allow_markup = true;
+      width = 250;
+    };
+    style = ''
+      * {
+        font-family: Iosevka, monospace;
+      }
+  
+      window {
+        background-color: #7c818c;
+      }
+    '';
   };
 }
