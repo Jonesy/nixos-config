@@ -27,6 +27,9 @@
           mode = "1920x1080@60Hz";
         };
       };
+      fonts = {
+        size = 14.0;
+      };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
         { command = "firefox"; }
@@ -35,11 +38,12 @@
       # menu = "\${pkgs.wofi}/bin/dmenu_path | \${pkgs.dmenu}/bin/dmenu | \${pkgs.findutils}/bin/xargs swaymsg exec --";
       keybindings =
         let
-          modifier =
+          mod =
             config.wayland.windowManager.sway.config.modifier;
+          wofi = lib.getExe pkgs.wofi;
         in
         lib.mkOptionDefault {
-          # "${modifier}+d" = "exec ${pkgs.wofi} --show run --prompt=Run";
+          "${mod}+d" = "exec ${wofi} --show run --prompt=Run";
         };
       input."type:touchpad" = {
         tap = "enabled";
