@@ -30,12 +30,13 @@
       fonts = {
         size = 14.0;
       };
+      assigns = {
+        "1: web" = [{ class = "^Firefox$"; }];
+      };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
         { command = "firefox"; }
       ];
-      # TODO: Wire up wofi
-      # menu = "\${pkgs.wofi}/bin/dmenu_path | \${pkgs.dmenu}/bin/dmenu | \${pkgs.findutils}/bin/xargs swaymsg exec --";
       keybindings =
         let
           mod =
@@ -49,13 +50,42 @@
         tap = "enabled";
         natural_scroll = "enabled";
       };
+      bars = [ ];
+      window = {
+        titlebar = true;
+      };
+      colors =
+        let
+          main = "#211e20";
+          secondary = "#555568";
+          light = "#a0a08b";
+          dark = "#e9efec";
+        in
+        {
+          focused = {
+            background = secondary;
+            border = secondary;
+            childBorder = secondary;
+            text = dark;
+            indicator = dark;
+          };
+          unfocused = {
+            background = main;
+            border = secondary;
+            childBorder = dark;
+            text = light;
+            indicator = main;
+          };
+          focusedInactive = {
+            background = main;
+            border = secondary;
+            childBorder = dark;
+            text = light;
+            indicator = main;
+
+          };
+        };
     };
-    # exec,wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --style=$HOME/.config/wofi.css --term=footclient --prompt=Run
-    # extraConfig = ''
-    #   input 1267:12792:ELAN067B:00_04F3:31F8_Touchpad {
-    #       natural_scroll enabled
-    #   }
-    # '';
   };
 
   # Notifications Daemon
@@ -66,27 +96,72 @@
   services.mako.padding = "10,5,10,10";
 
   # Waybar 
-  programs.waybar.settings = [{
-    # modules-left = [ "sway/workspaces" "sway/mode" ];
-    # modules-center = [ "sway/window" ];
-    # modules-right = [ "idle_inhibitor" "battery" "clock" "tray" ];
-    # "sway/window" = { max-length = 50; };
-    battery = {
-      format = "{capacity}% {icon}";
-      format-icons = [ "" "" "" "" "" ];
+  programs.waybar = {
+    enable = true;
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+        output = [
+          "eDP-1"
+          # "HDMI-A-1"
+        ];
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-center = [ "sway/window" ];
+        modules-right = [ "idle_inhibitor" "battery" "clock" "tray" ];
+        "sway/window" = { max-length = 50; };
+        battery = {
+          format = "{capacity}% {icon}";
+          format-icons = [ "" "" "" "" "" ];
+        };
+        clock = {
+          format = "{:%a %b %d %I:%M:%S %p}";
+          interval = 1;
+        };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+        };
+      };
     };
-    clock = {
-      format = "{:%a %b %d %I:%M:%S %p}";
-      interval = 1;
-    };
-    # idle_inhibitor = {
-    #   format = "{icon}";
-    #   format-icons = {
-    #     activated = "";
-    #     deactivated = "";
-    #   };
-    # };
-  }];
+    style = ''
+      * { 
+        font-family: IosevkaTerm, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+
+      window#waybar {
+        background-color: #211e20;
+      }
+
+      #workspaces button {
+        padding: 0 5px;
+        background-color: #555568;
+      }
+      
+      #clock, 
+      #battery,
+      #cpu,
+      #memory,
+      #temperature,
+      #backlight,
+      #network,
+      #pulsuaudio,
+      #custom-media,
+      #tray,
+      #mode, 
+      #inhibitor {
+        padding: 0 10px;
+        margin: 0 5px;
+      }
+    '';
+    systemd.enable = true;
+    systemd.target = "sway-session.target";
+  };
 
   # GTK Settings
   gtk = {
@@ -330,15 +405,34 @@
     enable = true;
     settings = {
       allow_markup = true;
-      width = 250;
+      width = "25%";
+      height = "25%";
     };
     style = ''
+      :root {
+        --color-0: #211e20;
+        --color-1: #555568;
+        --color-2: #a0a08b;
+        --color-3: #e9efec;
+      }
+
       * {
         font-family: Iosevka, monospace;
+        font-size: 16px;
       }
   
       window {
-        background-color: #7c818c;
+        color: var(--color-2);
+        background-color: var(--color-0);
+        border-radius: 0.1rem;
+      }
+
+      #input {
+        border-radius: none;
+      }
+
+      #entry {
+        border-radius: 0;
       }
     '';
   };
