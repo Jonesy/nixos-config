@@ -19,6 +19,7 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    systemd.enable = true;
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
@@ -35,6 +36,10 @@
       };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
+        {
+          command = "systemctl --user restart waybar";
+          always = true;
+        }
         { command = "firefox"; }
       ];
       keybindings =
@@ -45,6 +50,7 @@
         in
         lib.mkOptionDefault {
           "${mod}+d" = "exec ${wofi} --show run --prompt=Run";
+          # "${mod}+l" = "exec ${wofi} --show run --prompt=Run";
         };
       input."type:touchpad" = {
         tap = "enabled";
@@ -87,6 +93,45 @@
         };
     };
   };
+
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "808080";
+      font-size = 24;
+      indicator-idle-visible = false;
+      indicator-radius = 100;
+      line-color = "ffffff";
+      show-failed-attempts = true;
+    };
+  };
+
+  # Sway Idle 
+  # ----------------
+  systemd.user.services.swayidle.Install.WantedBy = [ "sway-session.target" ];
+
+  services.swayidle =
+    let
+      lockCmd = "${pkgs.swaylock}/bin/swaylock -c 000000 -fF";
+      sessionCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+      suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
+    in
+    {
+      enable = true;
+      extraArgs = [ "-w" ];
+      systemdTarget = "sway-session.target";
+      events = [
+        {
+          event = "before-sleep";
+          command = sessionCmd;
+        }
+        { event = "lock"; command = lockCmd; }
+      ];
+      timeouts = [
+        { timeout = 300; command = lockCmd; }
+        { timeout = 600; command = suspendCmd; }
+      ];
+    };
 
   # Notifications Daemon
   services.mako.enable = true;
@@ -159,9 +204,11 @@
         margin: 0 5px;
       }
     '';
-    systemd.enable = true;
-    systemd.target = "sway-session.target";
   };
+
+
+  programs.waybar.systemd.enable = true;
+  programs.waybar.systemd.target = "sway-session.target";
 
   # GTK Settings
   gtk = {
@@ -375,6 +422,9 @@
       cl = "clear";
       nd = "nix develop --command fish";
     };
+    interactiveShellInit = ''
+      fish_add_path = ~/.npm-packages/bin
+    '';
   };
 
   programs.git = {

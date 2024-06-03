@@ -29,6 +29,7 @@
   # Sway Setup
   # programs.sway.enable = true;
   security.polkit.enable = true;
+  security.pam.services.swaylock = { };
   hardware.opengl.enable = true;
 
   # Enable the X11 windowing system.
