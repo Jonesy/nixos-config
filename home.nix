@@ -36,11 +36,13 @@
       };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
+        # TODO: Hold off on 1password until ready to mess with lock
+        # {command = "1password --silent";}
+        { command = "firefox"; }
         {
-          command = "systemctl --user restart waybar";
+          command = "systemctl --user restart waybar.service";
           always = true;
         }
-        { command = "firefox"; }
       ];
       keybindings =
         let
@@ -136,9 +138,11 @@
   # Notifications Daemon
   services.mako.enable = true;
   services.mako.defaultTimeout = 5000;
-  services.mako.backgroundColor = "#0d0c0c";
-  services.mako.borderColor = "#e61f00";
+  services.mako.backgroundColor = "#211e20";
+  services.mako.borderColor = "transparent";
+  services.mako.borderSize = 0;
   services.mako.padding = "10,5,10,10";
+  services.mako.textColor = "#a0a08b";
 
   # Waybar 
   programs.waybar = {
@@ -154,28 +158,37 @@
         ];
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "idle_inhibitor" "battery" "clock" "tray" ];
+        modules-right = [ "tray" "cpu" "battery" "clock" ];
         "sway/window" = { max-length = 50; };
         battery = {
-          format = "{capacity}% {icon}";
+          format = "{icon}  {capacity}%";
+          format-charging = " {capacity}%";
           format-icons = [ "" "" "" "" "" ];
         };
+
+        cpu = {
+          format = "{icon}  {usage}%";
+          format-icons = [ "" ];
+        };
+
+        pulseaudio = {
+          format = " { icon } {volume}%";
+          format-icons = [ "" "" "" ];
+          format-muted = " {volume}% (Muted)";
+          on-click = "pactl set-sink-mute 0 toggle";
+        };
+
         clock = {
           format = "{:%a %b %d %I:%M:%S %p}";
           interval = 1;
         };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-        };
+
+        tray.show-passive-items = true;
       };
     };
     style = ''
       * { 
-        font-family: IosevkaTerm, Helvetica, sans-serif;
+        font-family: "IosevkaTerm Nerd Font", Helvetica, sans-serif;
         font-size: 14px;
       }
 
@@ -185,7 +198,15 @@
 
       #workspaces button {
         padding: 0 5px;
-        background-color: #555568;
+        margin: 5px;
+        border-radius: 0;
+        background-color: transparent;
+      }
+
+      #workspaces button.focused {
+        color: #211e20;
+        background-color: #a0a08b;
+        
       }
       
       #clock, 
@@ -459,31 +480,62 @@
       height = "25%";
     };
     style = ''
-      :root {
-        --color-0: #211e20;
-        --color-1: #555568;
-        --color-2: #a0a08b;
-        --color-3: #e9efec;
-      }
+      @define-color dark-1 #211e20;
+      @define-color dark-2 #555568;
+      @define-color light-1 #a0a08b;
+      @define-color light-2 #e9efec;
 
       * {
-        font-family: Iosevka, monospace;
-        font-size: 16px;
+        font-family: "IosevkaTerm Nerd Font", monospace;
+        font-size: 18px;
       }
   
       window {
-        color: var(--color-2);
-        background-color: var(--color-0);
+        color: @light-1;
+        background-color: @dark-1;
         border-radius: 0.1rem;
       }
 
+      #inner-box {
+        padding: 5px;
+      }
+
+      #outer-box {
+        padding: 5px;
+      }
+
       #input {
-        border-radius: none;
+        margin: 5px;
+        border-radius: 0;
+        color: @dark-2;
+        background-color: @dark-1;
+        border: 2px solid @dark-1;
+      }
+
+      #input:focus {
+        color: @light-2;
+      }
+
+      #input:focus > * {
+        border: none;
+        outline: none;
       }
 
       #entry {
         border-radius: 0;
       }
+
+      #entry:selected {
+        background-color: @light-2;
+        outline: none;
+      }
+
+      #text:selected {
+        color: @dark-1;
+        outline: none;
+      }
     '';
   };
 }
+
+
