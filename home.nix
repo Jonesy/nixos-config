@@ -139,8 +139,7 @@
   services.mako.enable = true;
   services.mako.defaultTimeout = 5000;
   services.mako.backgroundColor = "#211e20";
-  services.mako.borderColor = "transparent";
-  services.mako.borderSize = 0;
+  services.mako.borderColor = "#211e20";
   services.mako.padding = "10,5,10,10";
   services.mako.textColor = "#a0a08b";
 
@@ -158,16 +157,24 @@
         ];
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "tray" "cpu" "battery" "clock" ];
+        modules-right = [ "tray" "network" "cpu" "battery" "clock" ];
         "sway/window" = { max-length = 50; };
         battery = {
-          format = "{icon}  {capacity}%";
-          format-charging = " {capacity}%";
+          format = "<span color='#555568'>{icon}</span>  {capacity}%";
+          format-charging = "<span color='#555568'> </span> {capacity}%";
           format-icons = [ "" "" "" "" "" ];
         };
 
+        network = {
+          format-wifi = "<span color='#555568'> </span> {essid} <span color=\"#a0a08b\">{signalStrength}%</span>";
+          format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
+          format-linked = "  {ifname} (No IP)";
+          format-disconnected = "⚠ Disconnected ⚠";
+          format-alt = "{essid} {signalStrength}%";
+        };
+
         cpu = {
-          format = "{icon}  {usage}%";
+          format = "<span color='#555568'>{icon}</span>  {usage}%";
           format-icons = [ "" ];
         };
 
