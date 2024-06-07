@@ -1,9 +1,15 @@
-{ config, pkgs, lib, fonts, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "jjones";
   home.homeDirectory = "/home/jjones";
   home.sessionVariables.GTK_THEME = "Orchis-Dark-Compact";
+  programs.home-manager.enable = true;
+
+  imports = [
+    ./user/packages/git/git.nix
+    ./user/packages/term
+  ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -32,15 +38,16 @@
         size = 14.0;
       };
       assigns = {
-        "1: web" = [{ class = "^Firefox$"; }];
+        "1: Terminal" = [{ class = "^Alacritty$"; }];
+        "10: Slack" = [{ class = "^Slack$"; }];
+        "9: Password" = [{ class = "^1Password$"; }];
       };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
         # TODO: Hold off on 1password until ready to mess with lock
-        # {command = "1password --silent";}
-        { command = "firefox"; }
+        # { command = "1password --silent"; }
         {
-          command = "systemctl --user restart waybar.service";
+          command = "systemctl --user restart waybar";
           always = true;
         }
       ];
@@ -156,13 +163,17 @@
           # "HDMI-A-1"
         ];
         modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [ "tray" "network" "cpu" "battery" "clock" ];
+        modules-center = [ "clock" ];
+        modules-right = [ "tray" "network" "cpu" "battery" ];
         "sway/window" = { max-length = 50; };
         battery = {
           format = "<span color='#555568'>{icon}</span>  {capacity}%";
           format-charging = "<span color='#555568'> </span> {capacity}%";
           format-icons = [ "" "" "" "" "" ];
+        };
+
+        tray = {
+          spacing = 4;
         };
 
         network = {
@@ -186,7 +197,7 @@
         };
 
         clock = {
-          format = "{:%a %b %d %I:%M:%S %p}";
+          format = "{:%a %b %d %I:%M%p}";
           interval = 1;
         };
 
@@ -231,7 +242,16 @@
         padding: 0 10px;
         margin: 0 5px;
       }
+
+      #tray > .passive {
+        color: #555568;
+      }
+
+      #tray > .needs-attention {
+          color: #a0a08b;
+      }
     '';
+
   };
 
 
@@ -303,6 +323,7 @@
     signal-desktop
     _1password
     _1password-gui
+    slack
     eza
     bat
 
@@ -318,9 +339,6 @@
     wofi
 
     # Development
-    alacritty
-    starship
-    git
     lazygit
     gh
     glab
@@ -335,7 +353,6 @@
 
     # NeoVim
     neovim
-    zellij
     tree-sitter
     nodejs_20
 
@@ -396,7 +413,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  programs.home-manager.enable = true;
 
 
   # TODO: Figure out font scaling, maybe I just install hyprland
@@ -409,75 +425,6 @@
   #   }];
   # };
   # Program configs
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      shell = {
-        program = "fish";
-        args = [ "--login" ];
-      };
-      font = {
-        normal = {
-          family = "IosevkaTerm Nerd Font";
-          style = "Regular";
-        };
-        bold = {
-          family = "IosevkaTerm Nerd Font";
-          style = "Bold";
-        };
-        italic = {
-          family = "IosevkaTerm Nerd Font";
-          style = "Italic";
-        };
-        bold_italic = {
-          family = "IosevkaTerm Nerd Font";
-          style = "Bold Italic";
-        };
-        size = 16;
-      };
-      # TODO: Get my old MacOS CMD+K -> clear keybinding
-    };
-  };
-
-  # See reference here: https://nixos.wiki/wiki/Fish
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      zj = "zellij";
-      lg = "lazygit";
-      ll = "eza -l --icons --header";
-      lla = "eza -l -a --icons --header";
-      cl = "clear";
-      nd = "nix develop --command fish";
-    };
-    interactiveShellInit = ''
-      fish_add_path = ~/.npm-packages/bin
-    '';
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Joshua Jones";
-    userEmail = "joshua@general-metrics.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      core.editor = "nvim";
-    };
-  };
-
-  programs.zellij = {
-    enable = true;
-    settings = {
-      default_layout = "compact";
-      default_shell = "fish";
-      theme = "catpupuccin-mocha";
-      copy_command = "xclip -selection clipboard";
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-  };
 
   programs.wofi = {
     enable = true;

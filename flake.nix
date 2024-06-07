@@ -14,6 +14,12 @@
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
+      userSettings = rec {
+        username = "jjones";
+        email = "joshua@general-metrics.com";
+        fullName = "Joshua Jones";
+        fontFamilyTerm = "IosevkaTerm Nerd Font";
+      };
     in
     {
       nixosConfigurations = {
@@ -25,6 +31,9 @@
       homeConfigurations."jjones" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
+        extraSpecialArgs = {
+          inherit userSettings;
+        };
       };
     };
 }
