@@ -16,9 +16,9 @@
         modules-right = [ "tray" "network" "cpu" "battery" ];
         "sway/window" = { max-length = 50; };
         battery = {
-          format = "<span color='#555568'>{icon}</span>  {capacity}%";
-          format-charging = "<span color='#555568'> </span> {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format = "<span color='#555568'>{icon}</span> {capacity}%";
+          format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
+          format-icons = [ "󰁺" "󰁼" "󰁿" "󰂁" "󰁹" ];
         };
 
         tray = {
@@ -56,7 +56,7 @@
     style = pkgs.substituteAll {
       name = "style.css";
       src = ./style.css;
-      fontFamily = userSettings.fontFamilyTerm;
+      fontFamily = userSettings.fontFamilyGui;
       fontSize = builtins.toString (builtins.floor (userSettings.fontSize + 1.0));
     };
     # style = ''

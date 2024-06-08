@@ -19,6 +19,8 @@
         email = "joshua@general-metrics.com";
         fullName = "Joshua Jones";
         fontFamilyTerm = "IosevkaTerm Nerd Font";
+        fontFamilyGui = "SpaceMono Nerd Font";
+        fontSize = 16.0;
       };
     in
     {

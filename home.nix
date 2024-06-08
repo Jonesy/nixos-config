@@ -9,6 +9,7 @@
   imports = [
     ./user/packages/git/git.nix
     ./user/packages/term
+    ./user/packages/desktop/wayland
   ];
 
   # This value determines the Home Manager release that your configuration is
@@ -142,121 +143,7 @@
       ];
     };
 
-  # Notifications Daemon
-  services.mako.enable = true;
-  services.mako.defaultTimeout = 5000;
-  services.mako.backgroundColor = "#211e20";
-  services.mako.borderColor = "#211e20";
-  services.mako.padding = "10,5,10,10";
-  services.mako.textColor = "#a0a08b";
 
-  # Waybar 
-  programs.waybar = {
-    enable = true;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 30;
-        output = [
-          "eDP-1"
-          # "HDMI-A-1"
-        ];
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "tray" "network" "cpu" "battery" ];
-        "sway/window" = { max-length = 50; };
-        battery = {
-          format = "<span color='#555568'>{icon}</span>  {capacity}%";
-          format-charging = "<span color='#555568'> </span> {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
-        };
-
-        tray = {
-          spacing = 4;
-        };
-
-        network = {
-          format-wifi = "<span color='#555568'> </span> {essid} <span color=\"#a0a08b\">{signalStrength}%</span>";
-          format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
-          format-linked = "  {ifname} (No IP)";
-          format-disconnected = "⚠ Disconnected ⚠";
-          format-alt = "{essid} {signalStrength}%";
-        };
-
-        cpu = {
-          format = "<span color='#555568'>{icon}</span>  {usage}%";
-          format-icons = [ "" ];
-        };
-
-        pulseaudio = {
-          format = " { icon } {volume}%";
-          format-icons = [ "" "" "" ];
-          format-muted = " {volume}% (Muted)";
-          on-click = "pactl set-sink-mute 0 toggle";
-        };
-
-        clock = {
-          format = "{:%a %b %d %I:%M%p}";
-          interval = 1;
-        };
-
-        tray.show-passive-items = true;
-      };
-    };
-    style = ''
-      * { 
-        font-family: "IosevkaTerm Nerd Font", Helvetica, sans-serif;
-        font-size: 14px;
-      }
-
-      window#waybar {
-        background-color: #211e20;
-      }
-
-      #workspaces button {
-        padding: 0 5px;
-        margin: 5px;
-        border-radius: 0;
-        background-color: transparent;
-      }
-
-      #workspaces button.focused {
-        color: #211e20;
-        background-color: #a0a08b;
-        
-      }
-      
-      #clock, 
-      #battery,
-      #cpu,
-      #memory,
-      #temperature,
-      #backlight,
-      #network,
-      #pulsuaudio,
-      #custom-media,
-      #tray,
-      #mode, 
-      #inhibitor {
-        padding: 0 10px;
-        margin: 0 5px;
-      }
-
-      #tray > .passive {
-        color: #555568;
-      }
-
-      #tray > .needs-attention {
-          color: #a0a08b;
-      }
-    '';
-
-  };
-
-
-  programs.waybar.systemd.enable = true;
-  programs.waybar.systemd.target = "sway-session.target";
 
   # GTK Settings
   gtk = {
@@ -335,7 +222,6 @@
     # Window Manager
     wl-clipboard
     shotman
-    waybar
     wofi
 
     # Development
@@ -381,6 +267,7 @@
         "Iosevka"
         "IosevkaTerm"
         "JetBrainsMono"
+        "SpaceMono"
       ];
     })
   ];
@@ -413,83 +300,4 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-
-  # TODO: Figure out font scaling, maybe I just install hyprland
-  # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
-  # see also https://github.com/Hoverbear-Consulting/flake/blob/f6a2afd6646508727578552c8620391f4ef02e36/users/ana/home.nix#L47
-  # programs.dconf = {
-  #   enable = true;
-  #   programs.dconf.profiles.gdm.database = [{
-  #     settings."org/gnome/desktop/interface".scaling-factor = lib.gvariant.mkUint32 2;
-  #   }];
-  # };
-  # Program configs
-
-  programs.wofi = {
-    enable = true;
-    settings = {
-      allow_markup = true;
-      width = "25%";
-      height = "25%";
-    };
-    style = ''
-      @define-color dark-1 #211e20;
-      @define-color dark-2 #555568;
-      @define-color light-1 #a0a08b;
-      @define-color light-2 #e9efec;
-
-      * {
-        font-family: "IosevkaTerm Nerd Font", monospace;
-        font-size: 18px;
-      }
-  
-      window {
-        color: @light-1;
-        background-color: @dark-1;
-        border-radius: 0.1rem;
-      }
-
-      #inner-box {
-        padding: 5px;
-      }
-
-      #outer-box {
-        padding: 5px;
-      }
-
-      #input {
-        margin: 5px;
-        border-radius: 0;
-        color: @dark-2;
-        background-color: @dark-1;
-        border: 2px solid @dark-1;
-      }
-
-      #input:focus {
-        color: @light-2;
-      }
-
-      #input:focus > * {
-        border: none;
-        outline: none;
-      }
-
-      #entry {
-        border-radius: 0;
-      }
-
-      #entry:selected {
-        background-color: @light-2;
-        outline: none;
-      }
-
-      #text:selected {
-        color: @dark-1;
-        outline: none;
-      }
-    '';
-  };
 }
-
-
