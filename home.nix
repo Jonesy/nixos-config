@@ -63,7 +63,6 @@
           # "${mod}+l" = "exec ${wofi} --show run --prompt=Run";
         };
       input."type:touchpad" = {
-        tap = "enabled";
         natural_scroll = "enabled";
       };
       bars = [ ];

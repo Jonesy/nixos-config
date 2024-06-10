@@ -14,7 +14,7 @@
       @define-color light-2 #e9efec;
 
       * {
-        font-family: "SpaceMono Nerd Font", monospace;
+        font-family: "${userSettings.fontFamilyGui}", monospace;
         font-size: 18px;
       }
 
@@ -54,7 +54,7 @@
       }
 
       #entry:selected {
-        background-color: @light-2;
+        background-color: @light-1;
         outline: none;
       }
 
