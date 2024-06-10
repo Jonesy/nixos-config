@@ -100,9 +100,10 @@
   users.users.jjones = {
     isNormalUser = true;
     description = "Joshua Jones";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = [ ];
   };
+  programs.light.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

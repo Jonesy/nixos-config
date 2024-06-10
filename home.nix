@@ -57,9 +57,19 @@
           mod =
             config.wayland.windowManager.sway.config.modifier;
           wofi = lib.getExe pkgs.wofi;
+          pamixer = lib.getExe pkgs.pamixer;
+          brightnessctl = lib.getExe pkgs.light;
         in
         lib.mkOptionDefault {
           "${mod}+d" = "exec ${wofi} --show run --prompt=Run";
+          # Volume
+          "XF86AudioRaiseVolume" = "exec ${pamixer} --increase 5";
+          "XF86AudioLowerVolume" = "exec ${pamixer} --decrease 5";
+          "XF86AudioMute" = "exec ${pamixer} --toggle-mute";
+          "XF86AudioMicMute" = "exec ${pamixer} --default-source --toggle-mute";
+          # Brightness
+          "XF86MonBrightnessDown" = "exec ${brightnessctl} -U 10";
+          "XF86MonBrightnessUp" = "exec ${brightnessctl} -A 10";
           # "${mod}+l" = "exec ${wofi} --show run --prompt=Run";
         };
       input."type:touchpad" = {
