@@ -36,7 +36,7 @@
         };
       };
       fonts = {
-        size = 14.0;
+        size = 16.0;
       };
       assigns = {
         "1: Terminal" = [{ class = "^Alacritty$"; }];
