@@ -13,16 +13,17 @@
         ];
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "tray" "network" "cpu" "battery" ];
+        modules-right = [ "tray" "pulseaudio" "network" "cpu" "battery" ];
         "sway/window" = { max-length = 50; };
+
+        tray = {
+          spacing = 4;
+        };
+
         battery = {
           format = "<span color='#555568'>{icon}</span> {capacity}%";
           format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
           format-icons = [ "󰁺" "󰁼" "󰁿" "󰂁" "󰁹" ];
-        };
-
-        tray = {
-          spacing = 4;
         };
 
         network = {
@@ -39,10 +40,11 @@
         };
 
         pulseaudio = {
-          format = " { icon } {volume}%";
+          format = "<span color='#555568'>{icon}</span> {volume}%";
+          format-source = "<span color='#555568'>{icon}</span> {volume}%";
+          format-muted = "<span color='#555568'> </span> Muted";
+          format-bluetooth = "<span color='#555568'>󰂰</span>";
           format-icons = [ "" "" "" ];
-          format-muted = " {volume}% (Muted)";
-          on-click = "pactl set-sink-mute 0 toggle";
         };
 
         clock = {
