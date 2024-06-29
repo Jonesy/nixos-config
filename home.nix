@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, userSettings, ... }:
 
 {
   home.username = "jjones";
@@ -33,10 +33,12 @@
       output = {
         "Virtual-1" = {
           mode = "1920x1080@60Hz";
+          bg = "${config.home.homeDirectory}/.dotfiles/wallpaper.jpg fill";
+          adaptive_sync = "on";
         };
       };
       fonts = {
-        size = 16.0;
+        size = 14.0;
       };
       assigns = {
         "1: Terminal" = [{ class = "^Alacritty$"; }];
