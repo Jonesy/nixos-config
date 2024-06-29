@@ -33,7 +33,6 @@
       output = {
         "Virtual-1" = {
           mode = "1920x1080@60Hz";
-          bg = "${config.home.homeDirectory}/.dotfiles/wallpaper.jpg fill";
           adaptive_sync = "on";
         };
       };
@@ -47,6 +46,10 @@
       };
       startup = [
         { command = lib.getExe' config.services.mako.package "mako"; }
+        {
+          command =
+            "swaybg --image ${config.home.homeDirectory}/.dotfiles/wallpaper.jpg --output \"*\"";
+        }
         # TODO: Hold off on 1password until ready to mess with lock
         # { command = "1password --silent"; }
         {
@@ -234,6 +237,7 @@
     wl-clipboard
     shotman
     wofi
+    swaybg
 
     # Development
     lazygit
