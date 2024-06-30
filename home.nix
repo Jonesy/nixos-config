@@ -227,6 +227,8 @@
     slack
     eza
     bat
+    yazi
+    zoxide
 
     # GNOME
     gnomeExtensions.user-themes
