@@ -220,6 +220,7 @@
   home.packages = with pkgs; [
     apostrophe
     firefox
+    vivaldi
     chromium
     signal-desktop
     _1password
