@@ -121,12 +121,13 @@
   programs.swaylock = {
     enable = true;
     settings = {
-      color = "808080";
+      color = "211e20";
       font-size = 24;
-      indicator-idle-visible = false;
-      indicator-radius = 100;
-      line-color = "ffffff";
+      indicator-idle-visible = true;
+      indicator-radius = 120;
+      line-color = "e3e3e3";
       show-failed-attempts = true;
+      image = "${config.home.homeDirectory}/.dotfiles/wallpaper.jpg";
     };
   };
 

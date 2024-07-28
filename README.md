@@ -16,18 +16,31 @@ This configuration uses [flakes](https://nixos.wiki/wiki/Flakes) and [Home
 Manager](https://nix-community.github.io/home-manager/). After a few tries I got
 it to work by using the [home-manager
 flakes](https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-standalone)
-approach. 
+approach.
+
+## Updating
+
+```sh
+$ nix flake update
+$ sudo nixos-rebuild switch --flake .
+$ home-manager switch --flake .
+```
 
 ### Todos Short Term
 
-- [ ] Break up config into separate modules
+- [x] Break up config into separate modules
 - [ ] Write blog post tutorial
 - [ ] Clean up project structure
 - [ ] Allow for different users to install (not just me)
 - [ ] Add snippets in README
-- [ ] Figure out font-sizing!
 
 ### Todos Long Term
 
 - [ ] Structure for a second NixOS box and MacBook
-- [ ] Try out Hyprland or a comparable tiling manager
+- [x] Try out Hyprland or a comparable tiling manager
+
+### Reading Material
+
+- [Writing your own flakes](https://serokell.io/blog/practical-nix-flakes#writing-your-own)
+- [Connecting to Wifi](https://www.makeuseof.com/connect-to-wifi-with-nmcli/)
+- [Unofficial Cookbook](https://nixos-and-flakes.thiscute.world/)
