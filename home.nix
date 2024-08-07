@@ -264,6 +264,7 @@
     # LSPs
     nil
     gopls
+    bash-language-server
     lua-language-server
     rust-analyzer
     nodePackages_latest.typescript-language-server
@@ -278,6 +279,7 @@
     stylua
     prettierd
     nixpkgs-fmt
+    shellharden
 
     # Fonts
     (pkgs.nerdfonts.override {
