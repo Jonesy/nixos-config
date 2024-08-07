@@ -262,15 +262,16 @@
     nodejs_20
 
     # LSPs
-    nil
-    gopls
     bash-language-server
+    gopls
     lua-language-server
     rust-analyzer
+    marksman
+    nil
     nodePackages_latest.typescript-language-server
-    zls
-    vscode-langservers-extracted
     templ
+    vscode-langservers-extracted
+    zls
 
     # Linters
     lua54Packages.luacheck
