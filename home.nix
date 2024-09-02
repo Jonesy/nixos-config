@@ -263,6 +263,7 @@
 
     # LSPs
     bash-language-server
+    emmet-language-server
     gopls
     lua-language-server
     rust-analyzer
