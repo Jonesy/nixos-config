@@ -251,6 +251,7 @@
     gnumake42
     ripgrep
     fd
+    htop
     xclip
     any-nix-shell
     nix-prefetch
