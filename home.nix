@@ -219,6 +219,7 @@
   };
 
   home.packages = with pkgs; [
+    # Apps
     apostrophe
     firefox
     vivaldi
@@ -227,10 +228,6 @@
     _1password
     _1password-gui
     slack
-    eza
-    bat
-    yazi
-    zoxide
 
     # GNOME
     gnomeExtensions.user-themes
@@ -256,6 +253,11 @@
     any-nix-shell
     nix-prefetch
     glow # Markdown preview
+    eza
+    bat
+    yazi
+    zoxide
+    doctl
 
     # NeoVim
     neovim
