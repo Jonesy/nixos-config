@@ -245,6 +245,7 @@
     gh
     glab
     gcc
+    c3c
     gnumake42
     ripgrep
     fd
