@@ -228,6 +228,7 @@
     _1password
     _1password-gui
     slack
+    nushell
 
     # GNOME
     gnomeExtensions.user-themes
