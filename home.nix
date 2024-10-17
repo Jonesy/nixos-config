@@ -222,6 +222,7 @@
     # Apps
     apostrophe
     firefox
+    librewolf
     vivaldi
     chromium
     signal-desktop
@@ -260,6 +261,7 @@
     yazi
     zoxide
     doctl
+    just
 
     # NeoVim
     neovim
