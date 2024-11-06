@@ -9,7 +9,7 @@
     };
     # TODO: wire up shell plugins
     # https://developer.1password.com/docs/cli/shell-plugins/nix/
-    # _1password-shell-plugins.url = "github:1Password/shell-plugins";
+    _1password-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
