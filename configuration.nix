@@ -30,7 +30,7 @@
   # programs.sway.enable = true;
   security.polkit.enable = true;
   security.pam.services.swaylock = { };
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -77,7 +77,7 @@
   # };
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   # hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -115,7 +115,7 @@
     wget
     zsh
     git
-    gnome.gnome-tweaks
+    gnome-tweaks
     mako
   ];
 

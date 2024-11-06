@@ -1,4 +1,4 @@
-{ config, pkgs, lib, userSettings, ... }:
+{ config, pkgs, lib, _userSettings, ... }:
 
 {
   home.username = "jjones";
@@ -220,13 +220,13 @@
 
   home.packages = with pkgs; [
     # Apps
-    apostrophe
+    # apostrophe
     firefox
     librewolf
     vivaldi
     chromium
     signal-desktop
-    _1password
+    _1password-cli
     _1password-gui
     slack
     nushell
