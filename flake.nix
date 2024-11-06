@@ -12,7 +12,7 @@
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -38,6 +38,7 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = {
           inherit userSettings;
+          inherit inputs;
         };
       };
     };

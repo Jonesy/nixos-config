@@ -123,6 +123,11 @@
   environment.shells = with pkgs; [ fish ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "jjones" ];
+  };
 
   fonts.fontDir.enable = true;
 

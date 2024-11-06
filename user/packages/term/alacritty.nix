@@ -4,9 +4,11 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      shell = {
-        program = "fish";
-        args = [ "--login" ];
+      terminal = {
+        shell = {
+          program = "fish";
+          args = [ "--login" ];
+        };
       };
       colors = {
         # Default colors

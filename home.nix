@@ -118,6 +118,12 @@
     };
   };
 
+  # programs._1password.enable = true;
+  # programs._1password-gui = {
+  #   enable = true;
+  #   polkitPolicyOwners = [ "jjones" ];
+  # };
+
   programs.swaylock = {
     enable = true;
     settings = {
