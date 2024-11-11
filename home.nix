@@ -229,6 +229,7 @@
     # apostrophe
     firefox
     librewolf
+    floorp
     vivaldi
     chromium
     signal-desktop
