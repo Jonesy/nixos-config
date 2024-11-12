@@ -66,7 +66,7 @@
           brightnessctl = lib.getExe pkgs.light;
         in
         lib.mkOptionDefault {
-          "${mod}+d" = "exec ${wofi} --show run --prompt=Run";
+          "${mod}+space" = "exec ${wofi} --show run --prompt=Run";
           # Volume
           "XF86AudioRaiseVolume" = "exec ${pamixer} --increase 5";
           "XF86AudioLowerVolume" = "exec ${pamixer} --decrease 5";
