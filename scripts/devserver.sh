@@ -1,6 +1,7 @@
 # Load environment variables into scope
 set -a
 if [ -f ./.env ]; then
+  # shellcheck source=/dev/null
   . ./.env
 else
   echo "Unable to find .env file. Make sure you rename env.example"

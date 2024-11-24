@@ -119,16 +119,6 @@
     mako
     (
       pkgs.writeShellApplication {
-        name = "mycowsay";
-        runtimeInputs = with pkgs; [ ddate cowsay ];
-        text = ''
-          DATE=$(ddate +'the %e of %B%, %Y')
-          cowsay Hello, world! Today is "$DATE".
-        '';
-      }
-    )
-    (
-      pkgs.writeShellApplication {
         name = "devserver";
         runtimeInputs = with pkgs; [ entr ];
         text = builtins.readFile ./scripts/devserver.sh;
