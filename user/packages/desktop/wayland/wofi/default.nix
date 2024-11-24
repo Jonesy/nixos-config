@@ -1,5 +1,9 @@
-{ pkgs, userSettings, ... }: {
-  home.packages = with pkgs; [ wofi ];
+{
+  pkgs,
+  userSettings,
+  ...
+}: {
+  home.packages = with pkgs; [wofi];
   programs.wofi = {
     enable = true;
     settings = {
@@ -65,4 +69,3 @@
     '';
   };
 }
-

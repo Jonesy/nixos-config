@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ starship ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [starship];
   # See reference here: https://nixos.wiki/wiki/Fish
   programs.fish = {
     enable = true;

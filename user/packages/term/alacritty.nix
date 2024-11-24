@@ -1,13 +1,16 @@
-{ pkgs, userSettings, ... }:
 {
-  home.packages = with pkgs; [ alacritty ];
+  pkgs,
+  userSettings,
+  ...
+}: {
+  home.packages = with pkgs; [alacritty];
   programs.alacritty = {
     enable = true;
     settings = {
       terminal = {
         shell = {
           program = "fish";
-          args = [ "--login" ];
+          args = ["--login"];
         };
       };
       colors = {

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [ zellij ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [zellij];
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;

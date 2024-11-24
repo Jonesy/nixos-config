@@ -1,5 +1,9 @@
-{ pkgs, userSettings, ... }: {
-  home.packages = with pkgs; [ waybar ];
+{
+  pkgs,
+  userSettings,
+  ...
+}: {
+  home.packages = with pkgs; [waybar];
   programs.waybar = {
     enable = true;
     settings = {
@@ -11,10 +15,10 @@
           "eDP-1"
           # "HDMI-A-1"
         ];
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "tray" "pulseaudio" "network" "cpu" "battery" ];
-        "sway/window" = { max-length = 50; };
+        modules-left = ["sway/workspaces" "sway/mode"];
+        modules-center = ["clock"];
+        modules-right = ["tray" "pulseaudio" "network" "cpu" "battery"];
+        "sway/window" = {max-length = 50;};
 
         tray = {
           spacing = 4;
@@ -23,7 +27,7 @@
         battery = {
           format = "<span color='#555568'>{icon}</span> {capacity}%";
           format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
-          format-icons = [ "󰁺" "󰁼" "󰁿" "󰂁" "󰁹" ];
+          format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
         };
 
         network = {
@@ -36,7 +40,7 @@
 
         cpu = {
           format = "<span color='#555568'>{icon}</span>  {usage}%";
-          format-icons = [ "" ];
+          format-icons = [""];
         };
 
         pulseaudio = {
@@ -44,7 +48,7 @@
           format-source = "<span color='#555568'>{icon}</span> {volume}%";
           format-muted = "<span color='#555568'> </span> Muted";
           format-bluetooth = "<span color='#555568'>󰂰</span>";
-          format-icons = [ "" "" "" ];
+          format-icons = ["" "" ""];
         };
 
         clock = {
@@ -62,7 +66,7 @@
       fontSize = builtins.toString (builtins.floor (userSettings.fontSize + 1.0));
     };
     # style = ''
-    #   * { 
+    #   * {
     #     font-family: "IosevkaTerm Nerd Font", Helvetica, sans-serif;
     #     font-size: 14px;
     #   }
@@ -81,10 +85,10 @@
     #   #workspaces button.focused {
     #     color: #211e20;
     #     background-color: #a0a08b;
-    #     
+    #
     #   }
-    #   
-    #   #clock, 
+    #
+    #   #clock,
     #   #battery,
     #   #cpu,
     #   #memory,
@@ -94,7 +98,7 @@
     #   #pulsuaudio,
     #   #custom-media,
     #   #tray,
-    #   #mode, 
+    #   #mode,
     #   #inhibitor {
     #     padding: 0 10px;
     #     margin: 0 5px;

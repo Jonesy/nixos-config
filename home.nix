@@ -1,6 +1,10 @@
-{ config, pkgs, lib, _userSettings, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  _userSettings,
+  ...
+}: {
   home.username = "jjones";
   home.homeDirectory = "/home/jjones";
   home.sessionVariables.GTK_THEME = "Orchis-Dark-Compact";
@@ -40,15 +44,14 @@
         size = 14.0;
       };
       assigns = {
-        "1: Terminal" = [{ class = "^Alacritty$"; }];
-        "10: Slack" = [{ class = "^Slack$"; }];
-        "9: Password" = [{ class = "^1Password$"; }];
+        "1: Terminal" = [{class = "^Alacritty$";}];
+        "10: Slack" = [{class = "^Slack$";}];
+        "9: Password" = [{class = "^1Password$";}];
       };
       startup = [
-        { command = lib.getExe' config.services.mako.package "mako"; }
+        {command = lib.getExe' config.services.mako.package "mako";}
         {
-          command =
-            "swaybg --image ${config.home.homeDirectory}/.dotfiles/wallpaper.jpg --output \"*\"";
+          command = "swaybg --image ${config.home.homeDirectory}/.dotfiles/wallpaper.jpg --output \"*\"";
         }
         # TODO: Hold off on 1password until ready to mess with lock
         # { command = "1password --silent"; }
@@ -57,14 +60,13 @@
           always = true;
         }
       ];
-      keybindings =
-        let
-          mod =
-            config.wayland.windowManager.sway.config.modifier;
-          wofi = lib.getExe pkgs.wofi;
-          pamixer = lib.getExe pkgs.pamixer;
-          brightnessctl = lib.getExe pkgs.light;
-        in
+      keybindings = let
+        mod =
+          config.wayland.windowManager.sway.config.modifier;
+        wofi = lib.getExe pkgs.wofi;
+        pamixer = lib.getExe pkgs.pamixer;
+        brightnessctl = lib.getExe pkgs.light;
+      in
         lib.mkOptionDefault {
           "${mod}+space" = "exec ${wofi} --show run --prompt=Run";
           # Volume
@@ -80,41 +82,38 @@
       input."type:touchpad" = {
         natural_scroll = "enabled";
       };
-      bars = [ ];
+      bars = [];
       window = {
         titlebar = true;
       };
-      colors =
-        let
-          main = "#211e20";
-          secondary = "#555568";
-          light = "#a0a08b";
-          dark = "#e9efec";
-        in
-        {
-          focused = {
-            background = secondary;
-            border = secondary;
-            childBorder = secondary;
-            text = dark;
-            indicator = dark;
-          };
-          unfocused = {
-            background = main;
-            border = secondary;
-            childBorder = dark;
-            text = light;
-            indicator = main;
-          };
-          focusedInactive = {
-            background = main;
-            border = secondary;
-            childBorder = dark;
-            text = light;
-            indicator = main;
-
-          };
+      colors = let
+        main = "#211e20";
+        secondary = "#555568";
+        light = "#a0a08b";
+        dark = "#e9efec";
+      in {
+        focused = {
+          background = secondary;
+          border = secondary;
+          childBorder = secondary;
+          text = dark;
+          indicator = dark;
         };
+        unfocused = {
+          background = main;
+          border = secondary;
+          childBorder = dark;
+          text = light;
+          indicator = main;
+        };
+        focusedInactive = {
+          background = main;
+          border = secondary;
+          childBorder = dark;
+          text = light;
+          indicator = main;
+        };
+      };
     };
   };
 
@@ -137,34 +136,39 @@
     };
   };
 
-  # Sway Idle 
+  # Sway Idle
   # ----------------
-  systemd.user.services.swayidle.Install.WantedBy = [ "sway-session.target" ];
+  systemd.user.services.swayidle.Install.WantedBy = ["sway-session.target"];
 
-  services.swayidle =
-    let
-      lockCmd = "${pkgs.swaylock}/bin/swaylock -c 000000 -fF";
-      sessionCmd = "${pkgs.systemd}/bin/loginctl lock-session";
-      suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
-    in
-    {
-      enable = true;
-      extraArgs = [ "-w" ];
-      systemdTarget = "sway-session.target";
-      events = [
-        {
-          event = "before-sleep";
-          command = sessionCmd;
-        }
-        { event = "lock"; command = lockCmd; }
-      ];
-      timeouts = [
-        { timeout = 300; command = lockCmd; }
-        { timeout = 600; command = suspendCmd; }
-      ];
-    };
-
-
+  services.swayidle = let
+    lockCmd = "${pkgs.swaylock}/bin/swaylock -c 000000 -fF";
+    sessionCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+    suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
+  in {
+    enable = true;
+    extraArgs = ["-w"];
+    systemdTarget = "sway-session.target";
+    events = [
+      {
+        event = "before-sleep";
+        command = sessionCmd;
+      }
+      {
+        event = "lock";
+        command = lockCmd;
+      }
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = lockCmd;
+      }
+      {
+        timeout = 600;
+        command = suspendCmd;
+      }
+    ];
+  };
 
   # GTK Settings
   gtk = {
