@@ -282,7 +282,7 @@
     lua-language-server
     rust-analyzer
     marksman
-    nil
+    nixd
     nodePackages_latest.typescript-language-server
     templ
     vscode-langservers-extracted
@@ -294,7 +294,7 @@
     # Formatters
     stylua
     prettierd
-    nixpkgs-fmt
+    alejandra
     shellharden
 
     # Fonts
