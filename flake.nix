@@ -1,14 +1,14 @@
 {
-  description = "Home Manager configuration of jjones";
+  description = "Jonesy's NixOS Config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # TODO: wire up shell plugins
-    # https://developer.1password.com/docs/cli/shell-plugins/nix/
+
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
@@ -22,22 +22,35 @@
     pkgs = nixpkgs.legacyPackages.${system};
     userSettings = rec {
       username = "jjones";
-      email = "joshua@general-metrics.com";
       fullName = "Joshua Jones";
+      email = "joshua@general-metrics.com";
+      terminal = "alacritty";
       fontFamilyTerm = "IosevkaTerm Nerd Font";
-      fontFamilyGui = "SpaceMono Nerd Font";
       fontSize = 16.0;
     };
+
+    systemSettings = {
+      # TODO: See if I can have this set dynamically out of source control at runtime.
+      profile = "office";
+    };
+
+    # Utility helpers
+    supportedSystems = ["x86_64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
       inherit pkgs;
-      nixos = lib.nixosSystem {
-        modules = [./configuration.nix];
+      welshy = lib.nixosSystem {
+        modules = [./profiles/office/configuration.nix];
       };
     };
+
     homeConfigurations."jjones" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./home.nix];
+      modules = [
+        ./profiles/${systemSettings.profile}/home.nix
+      ];
       extraSpecialArgs = {
         inherit userSettings;
         inherit inputs;

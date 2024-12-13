@@ -4,7 +4,7 @@
   userSettings,
   ...
 }: {
-  home.packages = with pkgs; [git];
+  home.packages = [pkgs.git];
   programs.git = {
     enable = true;
     userName = userSettings.fullName;
