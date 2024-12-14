@@ -31,6 +31,7 @@
     ../../user/apps/git/git.nix
     ../../user/shell
     ../../user/apps/terminal/alacritty.nix
+    ../../user/desktop
     ../../user/apps/1password.nix
     ../../user/apps/nvim
     ../../user/security/ssh.nix
@@ -66,6 +67,16 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
