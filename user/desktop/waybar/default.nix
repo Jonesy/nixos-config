@@ -12,24 +12,24 @@
         position = "top";
         height = 30;
         output = [
+          # TODO: Conditional logic needed from profile
           # "eDP-1"
-          "HDMI-A-1"
+          "HDMI-A-2"
         ];
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["clock"];
-        modules-right = ["tray" "pulseaudio" "network" "cpu" "battery"];
+        modules-right = ["tray" "pulseaudio" "network" "cpu"];
         "sway/window" = {max-length = 50;};
-
         tray = {
           spacing = 4;
         };
-
-        battery = {
-          format = "<span color='#555568'>{icon}</span> {capacity}%";
-          format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
-          format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
-        };
-
+        #
+        #     battery = {
+        #       format = "<span color='#555568'>{icon}</span> {capacity}%";
+        #       format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
+        #       format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
+        #     };
+        #
         network = {
           format-wifi = "<span color='#555568'> </span> {essid} <span color=\"#a0a08b\">{signalStrength}%</span>";
           format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
@@ -66,6 +66,6 @@
       fontSize = builtins.toString (builtins.floor (userSettings.fontSize + 1.0));
     };
   };
-  # programs.waybar.systemd.enable = true;
-  # programs.waybar.systemd.target = "sway-session.target";
+  programs.waybar.systemd.enable = true;
+  programs.waybar.systemd.target = "sway-session.target";
 }

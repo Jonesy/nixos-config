@@ -81,6 +81,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Security
+  services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   hardware.graphics.enable = true;
 

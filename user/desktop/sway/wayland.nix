@@ -38,6 +38,11 @@
       fonts = {
         size = 14.0;
       };
+      assigns = {
+        "1: Terminal" = [{class = "^Alacritty$";}];
+        "9: 1Password" = [{class = "^1Password$";}];
+        "10: Slack" = [{class = "^Slack$";}];
+      };
       colors = let
         main = "#211e20";
         secondary = "#555568";
