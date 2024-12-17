@@ -15,6 +15,9 @@
       startup = [
         {command = lib.getExe' config.services.mako.package "mako";}
         {
+          command = "swaybg --image ${config.home.homeDirectory}/.dotfiles/wallpaper.jpg --output \"*\"";
+        }
+        {
           command = "systemctl --user restart waybar";
           always = true;
         }
