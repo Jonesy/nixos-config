@@ -8,7 +8,7 @@ in {
   programs.ssh = {
     enable = true;
     extraConfig = ''
-      Host *.github.com
+      Host *
         IdentityAgent ${onePassPath}
     '';
   };

@@ -73,7 +73,7 @@
       };
     };
     extraConfig = ''
-      output * scale 1.6
+      output * scale 2
     '';
   };
 }

@@ -26,6 +26,7 @@
       email = "joshua@general-metrics.com";
       terminal = "alacritty";
       fontFamilyTerm = "IosevkaTerm Nerd Font";
+      fontFamilyGui = "SpaceMono Nerd Font";
       fontSize = 16.0;
     };
 

@@ -63,11 +63,15 @@
   # services.xserver.libinput.enable = true;
 
   services.dbus.enable = true;
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  # };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jjones = {
@@ -84,6 +88,13 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   hardware.graphics.enable = true;
+
+  # Session variables
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    GDK_SCALE = "2";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

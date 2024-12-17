@@ -1,6 +1,6 @@
 {
   pkgs,
-  userSettings,
+  # userSettings,
   ...
 }: {
   home.packages = with pkgs; [
