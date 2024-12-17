@@ -76,6 +76,8 @@ MOX_ENABLE_WAYLAND=1
 GDK_SCALE=2
 ```
 
+Useful link  [link here](https://elis.nu/blog/2021/02/switching-to-wayland-sway/)
+
 I also applied the cursor fix as per the docs, turned on `gnome.keyring`
 
 ## Waybar
@@ -85,3 +87,7 @@ part of the fix, but I need to figure out which `portal.Desktop` I need to use.
 
 Ran into an error where the Output wasn't configured correctly, make sure it's
 being pointed at the correct port.
+
+## Mako
+
+Simply add a config file with customizations and install via home manager.

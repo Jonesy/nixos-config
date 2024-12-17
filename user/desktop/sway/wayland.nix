@@ -13,6 +13,7 @@
       terminal = "alacritty";
       bars = [];
       startup = [
+        {command = lib.getExe' config.services.mako.package "mako";}
         {
           command = "systemctl --user restart waybar";
           always = true;
@@ -40,7 +41,6 @@
       };
       assigns = {
         "1: Terminal" = [{class = "^Alacritty$";}];
-        "9: 1Password" = [{class = "^1Password$";}];
         "10: Slack" = [{class = "^Slack$";}];
       };
       colors = let

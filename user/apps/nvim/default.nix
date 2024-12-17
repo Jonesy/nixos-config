@@ -16,6 +16,7 @@
     nixd
     nodePackages_latest.typescript-language-server
     templ
+    vscode-langservers-extracted
     zls
 
     # Linters

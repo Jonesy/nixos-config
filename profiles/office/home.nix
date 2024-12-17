@@ -42,6 +42,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    mako
     # Development specific packages, will vary machine to machine most likely
     xclip
     wl-clipboard
