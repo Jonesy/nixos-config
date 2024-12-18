@@ -25,6 +25,7 @@
       "1password-cli"
       "slack"
       "vivaldi"
+      "aseprite"
     ];
 
   imports = [
@@ -66,6 +67,12 @@
     yazi
     zoxide
     just
+
+    # Editing software
+    gimp
+    inkscape
+    aseprite
+
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')

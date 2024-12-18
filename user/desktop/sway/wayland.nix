@@ -29,6 +29,7 @@
       in
         lib.mkOptionDefault {
           "${mod}+space" = "exec ${wofi} --show run --prompt=Run";
+          "${mod}+l" = "exec systemctl suspend";
           "XF86AudioRaiseVolume" = "exec ${pamixer} --increase 5";
           "XF86AudioLowerVolume" = "exec ${pamixer} --decrease 5";
           "XF86AudioMute" = "exec ${pamixer} --toggle-mute";

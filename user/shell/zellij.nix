@@ -2,7 +2,7 @@
   home.packages = with pkgs; [zellij];
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    # enableFishIntegration = true;
     settings = {
       default_layout = "compact";
       default_shell = "fish";
