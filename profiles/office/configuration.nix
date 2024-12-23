@@ -110,6 +110,7 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
+  # 1Password
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
   programs._1password-gui.polkitPolicyOwners = ["jjones"];
