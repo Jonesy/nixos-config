@@ -31,7 +31,7 @@
 
   imports = [
     ../../user/apps/git/git.nix
-    ../../user/development/tools.nix
+    ../../user/development
     ../../user/shell
     ../../user/apps/terminal/alacritty.nix
     ../../user/desktop
