@@ -47,7 +47,18 @@
           ./profiles/office/configuration.nix
           # TODO: Make sure I can build on a per-computer basis, embed home manager as
           # per the docs.
-          # home-manager.lib.homeManagerConfiguration
+          # home-manager.nixosModules.home-manager
+          # {
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.userUserPackages = true;
+          #   home-manager.users.jjones = import ./profiles/office/home.nix;
+          #   home-manager.extraSpecialArgs = {
+          #     inherit pkgs;
+          #     inherit userSettings;
+          #     inherit inputs;
+          #   };
+          # }
+          # home-manager.nixosModules.home-manager
           # {
           #   inherit pkgs;
           #   modules = [
