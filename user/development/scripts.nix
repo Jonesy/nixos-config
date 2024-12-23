@@ -4,7 +4,7 @@
       pkgs.writeShellApplication {
         name = "devserver";
         runtimeInputs = with pkgs; [entr];
-        text = builtins.readFile ./scripts/devserver.sh;
+        text = builtins.readFile ../../scripts/devserver.sh;
       }
     )
   ];
