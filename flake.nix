@@ -43,7 +43,22 @@
     nixosConfigurations = {
       inherit pkgs;
       welshy = lib.nixosSystem {
-        modules = [./profiles/office/configuration.nix];
+        modules = [
+          ./profiles/office/configuration.nix
+          # TODO: Make sure I can build on a per-computer basis, embed home manager as
+          # per the docs.
+          # home-manager.lib.homeManagerConfiguration
+          # {
+          #   inherit pkgs;
+          #   modules = [
+          #     ./profiles/${systemSettings.profile}/home.nix
+          #   ];
+          #   extraSpecialArgs = {
+          #     inherit userSettings;
+          #     inherit inputs;
+          #   };
+          # }
+        ];
       };
     };
 
