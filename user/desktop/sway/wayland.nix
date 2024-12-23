@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  home.packages = [pkgs.swaybg];
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

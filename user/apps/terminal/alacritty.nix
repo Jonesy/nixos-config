@@ -61,7 +61,7 @@
           family = userSettings.fontFamilyTerm;
           style = "Bold Italic";
         };
-        size = 16;
+        size = 14;
       };
     };
   };

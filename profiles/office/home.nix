@@ -1,3 +1,4 @@
+# Beelink Office dotfiles
 {
   config,
   pkgs,
@@ -30,6 +31,7 @@
 
   imports = [
     ../../user/apps/git/git.nix
+    ../../user/development/tools.nix
     ../../user/shell
     ../../user/apps/terminal/alacritty.nix
     ../../user/desktop
@@ -43,35 +45,17 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # Desktop
-    swaybg
-    mako
-    # Development specific packages, will vary machine to machine most likely
+    # For now let's just keep the clipboard computer-specific
     xclip
     wl-clipboard
-    lazygit
-    gh
-    glab
-    gcc
-    c3c
-    gnumake42
-    fzf
-    ripgrep
-    fd
-    htop
-    any-nix-shell
-    nix-prefetch
-    glow
-    eza
-    bat
-    yazi
-    zoxide
-    just
 
     # Editing software
     gimp
     inkscape
     aseprite
+
+    # Email
+    thunderbird
 
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"

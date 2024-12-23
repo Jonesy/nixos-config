@@ -1,5 +1,6 @@
 # Notifications Daemon
-{...}: {
+{pkgs, ...}: {
+  home.packages = [pkgs.mako];
   services.mako.enable = true;
   services.mako.defaultTimeout = 5000;
   services.mako.backgroundColor = "#211e20";
