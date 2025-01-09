@@ -33,7 +33,7 @@
     ../../user/apps/git/git.nix
     ../../user/development
     ../../user/shell
-    ../../user/apps/terminal/alacritty.nix
+    ../../user/apps/terminal
     ../../user/desktop
     ../../user/apps/1password.nix
     ../../user/apps/nvim

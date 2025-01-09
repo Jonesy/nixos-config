@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.alacritty];
+  home.packages = [pkgs.ghostty];
 }
