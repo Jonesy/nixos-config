@@ -57,7 +57,7 @@ they will install. Sign in and you're off to the races!
 ## Sway time
 
 Follow home manager instructions for installing sway from wiki, also not going
-Systemd route this time.
+systemd route this time.
 
 A great resources for setting up Sway https://www.drakerossman.com/blog/wayland-on-nixos-confusion-conquest-triumph
 
@@ -91,3 +91,17 @@ being pointed at the correct port.
 ## Mako
 
 Simply add a config file with customizations and install via home manager.
+
+## Ghostty
+
+Late December Ghostty was officially released to the public, and was
+distributed to Nix's package manager. I opted to inline my settings in the
+config since I won't be changing them often.
+
+## TODO:
+
+- [ ] wofi + wifi launcher
+- [ ] Bluetooth support via blueman
+- [ ] Fix missing audio in waybar
+- [ ] Launch sway on login
+

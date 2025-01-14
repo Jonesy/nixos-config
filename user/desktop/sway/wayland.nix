@@ -12,7 +12,7 @@
 
     config = rec {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "ghostty";
       bars = [];
       startup = [
         {command = lib.getExe' config.services.mako.package "mako";}

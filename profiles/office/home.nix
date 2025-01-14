@@ -35,6 +35,7 @@
     ../../user/shell
     ../../user/apps/terminal
     ../../user/desktop
+    ../../user/apps/network.nix
     ../../user/apps/1password.nix
     ../../user/apps/nvim
     ../../user/security/ssh.nix
