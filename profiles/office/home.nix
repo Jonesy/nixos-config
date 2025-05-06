@@ -26,7 +26,7 @@
       "1password-cli"
       "slack"
       "vivaldi"
-      "aseprite"
+      # "aseprite"
     ];
 
   imports = [
@@ -53,7 +53,7 @@
     # Editing software
     gimp
     inkscape
-    aseprite
+    # aseprite
 
     # Email
     thunderbird
