@@ -7,6 +7,9 @@
       background = "#212337";
       theme = "duckbones";
       font-family = "IosevkaTerm Nerd Font Mono";
+      clipboard-read = "allow";
+      clipboard-write = "allow";
+      clipboard-paste-protection = true;
     };
   };
 }
