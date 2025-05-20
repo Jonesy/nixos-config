@@ -30,11 +30,6 @@
       fontSize = 16.0;
     };
 
-    systemSettings = {
-      # TODO: See if I can have this set dynamically out of source control at runtime.
-      profile = "office";
-    };
-
     # Utility helpers
     supportedSystems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -73,14 +68,26 @@
       };
     };
 
-    homeConfigurations."jjones" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./profiles/${systemSettings.profile}/home.nix
-      ];
-      extraSpecialArgs = {
-        inherit userSettings;
-        inherit inputs;
+    homeConfigurations = {
+      "thinkpad" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./profiles/thinkpad/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit userSettings;
+          inherit inputs;
+        };
+      };
+      "office" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./profiles/office/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit userSettings;
+          inherit inputs;
+        };
       };
     };
   };
