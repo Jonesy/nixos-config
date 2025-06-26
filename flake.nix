@@ -37,33 +37,15 @@
   in {
     nixosConfigurations = {
       inherit pkgs;
+      # TODO: Rename host eventually
+      nixos = lib.nixosSystem {
+        modules = [
+          ./profiles/thinkpad/configuration.nix
+        ];
+      };
       welshy = lib.nixosSystem {
         modules = [
           ./profiles/office/configuration.nix
-          # TODO: Make sure I can build on a per-computer basis, embed home manager as
-          # per the docs.
-          # home-manager.nixosModules.home-manager
-          # {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.userUserPackages = true;
-          #   home-manager.users.jjones = import ./profiles/office/home.nix;
-          #   home-manager.extraSpecialArgs = {
-          #     inherit pkgs;
-          #     inherit userSettings;
-          #     inherit inputs;
-          #   };
-          # }
-          # home-manager.nixosModules.home-manager
-          # {
-          #   inherit pkgs;
-          #   modules = [
-          #     ./profiles/${systemSettings.profile}/home.nix
-          #   ];
-          #   extraSpecialArgs = {
-          #     inherit userSettings;
-          #     inherit inputs;
-          #   };
-          # }
         ];
       };
     };

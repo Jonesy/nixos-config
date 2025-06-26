@@ -11,11 +11,6 @@
         layer = "top";
         position = "top";
         height = 30;
-        output = [
-          # TODO: Conditional logic needed from profile
-          # "eDP-1"
-          "HDMI-A-2"
-        ];
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["clock"];
         modules-right = ["tray" "pulseaudio" "network" "cpu"];
@@ -23,13 +18,6 @@
         tray = {
           spacing = 4;
         };
-        #
-        #     battery = {
-        #       format = "<span color='#555568'>{icon}</span> {capacity}%";
-        #       format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
-        #       format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
-        #     };
-        #
         network = {
           format-wifi = "<span color='#555568'> </span> {essid} <span color=\"#a0a08b\">{signalStrength}%</span>";
           format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
@@ -59,9 +47,7 @@
         tray.show-passive-items = true;
       };
     };
-    style = pkgs.substituteAll {
-      name = "style.css";
-      src = ./style.css;
+    style = pkgs.replaceVars ./style.css {
       fontFamily = userSettings.fontFamilyGui;
       fontSize = builtins.toString (builtins.floor (userSettings.fontSize + 1.0));
     };

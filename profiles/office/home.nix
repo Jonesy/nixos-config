@@ -20,6 +20,7 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  # TODO: Figure out where this goes
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "1password"
@@ -35,6 +36,7 @@
     ../../user/shell
     ../../user/apps/terminal
     ../../user/desktop
+    ../../user/desktop/waybar/
     ../../user/apps/network.nix
     ../../user/apps/1password.nix
     ../../user/apps/nvim
@@ -62,6 +64,18 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  programs.waybar.settings.mainBar.output = ["HDMI-A-2"];
+  wayland.windowManager.sway.config = {
+    output = {
+      "Virtual-1" = {
+        mode = "3840x2161@60Hz";
+      };
+    };
+    extraConfig = ''
+      output * scale 2
+    '';
+  };
 
   home.pointerCursor = {
     name = "Adwaita";

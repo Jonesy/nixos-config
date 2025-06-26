@@ -1,14 +1,21 @@
 # ThinkPad Dotfiles
-{pkgs, ...}: {
-  home.username = "jjones";
+{
+  pkgs,
+  userSettings,
+  ...
+}: {
+  home.username = userSettings.username;
   home.homeDirectory = "/home/jjones";
+
+  # userSettings.display = display;
 
   imports = [
     ../../user/apps/git/git.nix
-    ../../user/development/tools.nix
+    ../../user/development
     ../../user/shell
-    ../../user/apps/terminal/alacritty.nix
+    ../../user/apps/terminal
     ../../user/desktop
+    ../../user/apps/network.nix
     ../../user/apps/1password.nix
     ../../user/apps/nvim
     ../../user/security/ssh.nix
@@ -30,6 +37,25 @@
     wl-clipboard
     shotman
   ];
+
+  programs.waybar.settings.mainBar = let
+    waybarSettings = import ../../user/desktop/waybar;
+    existingModules = waybarSettings.settings.mainBar.modules-right or [];
+  in {
+    output = ["eDP-1"];
+    battery = {
+      format = "<span color='#555568'>{icon}</span> {capacity}%";
+      format-charging = "<span color='#555568'>󰂄 </span> {capacity}%";
+      format-icons = ["󰁺" "󰁼" "󰁿" "󰂁" "󰁹"];
+    };
+    modules-right = existingModules ++ ["battery"];
+  };
+  wayland.windowManager.sway.config.output = {
+    "Virtual-1" = {
+      mode = "1920x1080@60Hz";
+      adaptive_sync = "on";
+    };
+  };
 
   fonts.fontconfig.enable = true;
 
