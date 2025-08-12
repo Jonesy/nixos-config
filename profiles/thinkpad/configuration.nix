@@ -59,6 +59,7 @@
       xdg-desktop-portal-wlr
     ];
   };
+  xdg.portal.config.common.default = "*";
 
   # Enable sound with pipewire.
   # sound.enable = true;
@@ -192,6 +193,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.caddy = {
+    enable = true;
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

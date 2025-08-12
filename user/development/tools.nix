@@ -5,7 +5,7 @@
     gh
     glab
     gcc
-    c3c
+    # c3c
     gnumake42
     fzf
     ripgrep
