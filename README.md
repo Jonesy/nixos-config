@@ -44,3 +44,4 @@ home-manager switch --flake .;
 - [Writing your own flakes](https://serokell.io/blog/practical-nix-flakes#writing-your-own)
 - [Connecting to Wifi](https://www.makeuseof.com/connect-to-wifi-with-nmcli/)
 - [Unofficial Cookbook](https://nixos-and-flakes.thiscute.world/)
+- [If the boot volume runs out of space](https://blog.tiserbox.com/posts/2024-04-15-how-to-fix-boot-volume-running-out-of-disk-space-in-nix-os.html)

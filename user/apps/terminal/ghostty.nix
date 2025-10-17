@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       background = "#212337";
-      theme = "duckbones";
+      theme = "Duckbones";
       font-family = "IosevkaTerm Nerd Font Mono";
       font-size = 16.0;
       clipboard-read = "allow";

@@ -36,6 +36,9 @@
     # Window Manager
     wl-clipboard
     shotman
+    devenv
+    dwl
+    wmenu
   ];
 
   programs.waybar.settings.mainBar = let

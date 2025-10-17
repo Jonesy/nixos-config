@@ -100,6 +100,7 @@
     wget
     zsh
     git
+    foot
   ];
 
   environment.sessionVariables = {
@@ -193,11 +194,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.caddy = {
-    enable = true;
-  };
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedTCPPorts = [80 443];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

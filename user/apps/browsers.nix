@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     firefox
     librewolf
-    floorp
+    floorp-bin
     vivaldi
   ];
 }
