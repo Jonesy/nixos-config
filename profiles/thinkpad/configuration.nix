@@ -2,6 +2,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../user/desktop/dwl
   ];
 
   # Bootloader.
@@ -100,7 +101,8 @@
     wget
     zsh
     git
-    foot
+    slstatus
+    wmenu
   ];
 
   environment.sessionVariables = {
