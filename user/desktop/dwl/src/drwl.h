@@ -1,7 +1,7 @@
 /*
  * drwl - https://codeberg.org/sewn/drwl
  *
- * Copyright (c) 2023-2025 sewn <sewn@disroot.org>
+ * Copyright (c) 2023-2024 sewn <sewn@disroot.org>
  * Copyright (c) 2024 notchoc <notchoc@disroot.org>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -89,7 +89,7 @@ static Drwl *
 drwl_create(void)
 {
 	Drwl *drwl;
-	
+
 	if (!(drwl = calloc(1, sizeof(Drwl))))
 		return NULL;
 

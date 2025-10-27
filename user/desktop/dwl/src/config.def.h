@@ -12,7 +12,7 @@ static const int topbar                    = 1; /* 0 means bottom bar */
 static const char *fonts[]                 = {"monospace:size=10"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
-static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
+static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
 	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
@@ -20,7 +20,7 @@ static uint32_t colors[][3]                = {
 	[SchemeUrg]  = { 0,          0,          0x770000ff },
 };
 
-/* tagging */
+/* tagging - TAGCOUNT must be no greater than 31 */
 static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 /* logging */
