@@ -101,7 +101,6 @@
     wget
     zsh
     git
-    slstatus
     wmenu
   ];
 

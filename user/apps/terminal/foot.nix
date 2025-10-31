@@ -7,6 +7,6 @@
         font = "IosevkaTerm Nerd Font Mono:size=16";
       };
     };
-    theme = "dracula";
+    # theme = "dracula";
   };
 }

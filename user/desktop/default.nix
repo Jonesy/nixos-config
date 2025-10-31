@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./slstatus
     ./sway
     ./swayidle.nix
     ./swaylock.nix
