@@ -29,7 +29,8 @@
   # programs.sway.enable = true;
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
-  security.pam.services.swaylock = {};
+  # security.pam.services.swaylock = {};
+  security.pam.services.waylock = {};
   hardware.graphics.enable = true;
 
   # Enable the X11 windowing system.
@@ -102,6 +103,7 @@
     zsh
     git
     wmenu
+    waylock
   ];
 
   environment.sessionVariables = {
