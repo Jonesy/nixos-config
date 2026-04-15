@@ -7,9 +7,11 @@
   home.packages = [pkgs.git];
   programs.git = {
     enable = true;
-    userName = userSettings.fullName;
-    userEmail = userSettings.email;
-    extraConfig = {
+    settings = {
+      user = {
+        name = userSettings.fullName;
+        email = userSettings.email;
+      };
       init.defaultBranch = "main";
       core.editor = "nvim";
     };

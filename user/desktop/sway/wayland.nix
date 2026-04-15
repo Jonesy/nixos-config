@@ -31,7 +31,7 @@
         mod = config.wayland.windowManager.sway.config.modifier;
         pamixer = lib.getExe pkgs.pamixer;
         wofi = lib.getExe pkgs.wofi;
-        brightnessctl = lib.getExe pkgs.light;
+        brightnessctl = lib.getExe pkgs.acpi;
       in
         lib.mkOptionDefault {
           "${mod}+space" = "exec ${wofi} --show run --prompt=Run";
