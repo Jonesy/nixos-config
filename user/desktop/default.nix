@@ -4,8 +4,7 @@
     ./somebar
     ./sway
     ./swayidle.nix
-    ./swaylock.nix
-    ./waybar
+    # ./waybar
     ./wofi.nix
     ./mako.nix
   ];

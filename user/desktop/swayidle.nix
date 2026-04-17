@@ -1,31 +1,28 @@
 {pkgs, ...}: {
-  systemd.user.services.swayidle.Install.WantedBy = ["sway-session.target"];
-
   services.swayidle = let
-    lockCmd = "${pkgs.swaylock}/bin/swaylock -c 000000 -fF";
-    sessionCmd = "${pkgs.systemd}/bin/loginctl lock-session";
+    lockCmd = "${pkgs.waylock}/bin/waylock";
     suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
+    display = status: "${pkgs.wlopm}/bin/wlopm --${status} '*'";
   in {
     enable = true;
-    extraArgs = ["-w"];
-    systemdTarget = "sway-session.target";
-    events = [
-      {
-        event = "before-sleep";
-        command = sessionCmd;
-      }
-      {
-        event = "lock";
-        command = lockCmd;
-      }
-    ];
+    events = {
+      before-sleep = lockCmd;
+      lock = lockCmd;
+      after-resume = display "on";
+      unlock = display "on";
+    };
     timeouts = [
       {
-        timeout = 300;
+        timeout = 150;
         command = lockCmd;
       }
       {
-        timeout = 600;
+        timeout = 210;
+        command = display "off";
+        resumeCommand = display "on";
+      }
+      {
+        timeout = 260;
         command = suspendCmd;
       }
     ];
