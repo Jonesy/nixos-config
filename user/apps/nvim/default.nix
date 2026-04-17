@@ -14,7 +14,7 @@
     rust-analyzer
     marksman
     nixd
-    nodePackages_latest.typescript-language-server
+    typescript-language-server
     templ
     vscode-langservers-extracted
     zls

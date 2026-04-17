@@ -90,7 +90,6 @@
     extraGroups = ["networkmanager" "wheel" "video"];
     packages = [];
   };
-  programs.light.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 

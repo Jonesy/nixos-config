@@ -10,5 +10,5 @@ clean:
 .PHONY: update
 update:
 		nix flake update
-		sudo nixos-rebuild switch --flake .
-		home-manager switch --flake .
+		sudo nixos-rebuild switch --flake .#nixos
+		home-manager switch --flake .#thinkpad
