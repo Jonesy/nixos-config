@@ -132,10 +132,16 @@ static const char *menucmd[] = {
   "-l", "10",
   NULL
 };
+static const char *volumedowncmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL};
+static const char *volumeupcmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL};
+static const char *mutecmd[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL};
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
+  { 0,                         XKB_KEY_XF86AudioRaiseVolume, spawn,{.v = volumeupcmd } },
+  { 0,                         XKB_KEY_XF86AudioLowerVolume, spawn,{.v = volumedowncmd } },
+  { 0,                         XKB_KEY_XF86AudioMute, spawn,{.v = mutecmd } },
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },

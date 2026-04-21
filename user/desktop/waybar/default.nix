@@ -11,13 +11,20 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = ["sway/workspaces" "sway/mode"];
+        modules-left = ["dwl/tags"];
         modules-center = ["clock"];
         modules-right = ["tray" "pulseaudio" "network" "cpu"];
         "sway/window" = {max-length = 50;};
         tray = {
           spacing = 4;
         };
+
+        "dwl/tags" = {
+          "num-tags" = 9;
+          "tag-labels" = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
+          "disable-click" = false;
+        };
+
         network = {
           format-wifi = "<span color='#555568'> </span> {essid} <span color=\"#a0a08b\">{signalStrength}%</span>";
           format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
@@ -52,6 +59,6 @@
       fontSize = builtins.toString (builtins.floor (userSettings.fontSize + 1.0));
     };
   };
-  programs.waybar.systemd.enable = true;
-  programs.waybar.systemd.target = "sway-session.target";
+  # programs.waybar.systemd.enable = true;
+  # programs.waybar.systemd.target = "sway-session.target";
 }
