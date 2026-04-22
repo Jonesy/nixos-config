@@ -37,6 +37,7 @@
     wl-clipboard
     shotman
     devenv
+    brightnessctl
   ];
 
   programs.waybar.settings.mainBar = let
