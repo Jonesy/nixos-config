@@ -61,7 +61,14 @@
 
   fonts.fontconfig.enable = true;
 
-  home.file = {};
+  home.file.".local/bin/start-dwl" = {
+    executable = true;
+    text = ''
+      #!/bin/sh
+      mako &
+      slstatus -s | dwl
+    '';
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
