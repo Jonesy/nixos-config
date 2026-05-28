@@ -4,7 +4,7 @@
     neovim
     # NeoVim required
     tree-sitter
-    nodejs_20
+    nodejs_24
 
     # LSPs
     bash-language-server
