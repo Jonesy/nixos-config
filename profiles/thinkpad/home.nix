@@ -67,6 +67,7 @@
       #!/bin/sh
       mako &
       swaybg --image /home/jjones/.dotfiles/wallpaper.jpg --output \"*\" &
+      foot --server &
       slstatus -s | dwl
     '';
   };
