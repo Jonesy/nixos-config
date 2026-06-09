@@ -61,14 +61,36 @@
 
   fonts.fontconfig.enable = true;
 
-  home.file.".local/bin/start-dwl" = {
+  home.file.".local/bin/start-dwl" = let
+    dbusActivate = "${pkgs.dbus}/bin/dbus-update-activation-environment";
+  in {
     executable = true;
     text = ''
       #!/bin/sh
+      # Kill already running services
+      pkill -9 -x waybar mako swaybg swayidle
+
+      # Required for starting from at TTY
+      export XDG_CURRENT_DESKTOP=wlroots
+      export XDG_SESSION_TYPE=wayland
+      export XDG_SESSION_DESKTOP=wlroots
+
+      # Tell dwl about dbus
+      ${dbusActivate} --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
+      systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+      echo "imported WAYLAND_DISPLAY=$WAYLAND_DISPLAY pid=$$" >> /tmp/dwl-start.log
+
+      waybar &
       mako &
       swaybg --image /home/jjones/.dotfiles/wallpaper.jpg --output \"*\" &
       foot --server &
-      slstatus -s | dwl
+      swayidle -w \
+          timeout 300 '${pkgs.waylock}/bin/waylock -c 000000' \
+          timeout 360 '${pkgs.wlopm}/bin/wlopm --off "*"' \
+          resume '${pkgs.wlopm}/bin/wlopm --on "*"' \
+          timeout 600 '${pkgs.systemd}/bin/systemctl suspend' \
+          before-sleep '${pkgs.waylock}/bin/waylock -c 000000' &
+      wait
     '';
   };
 

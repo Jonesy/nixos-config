@@ -19,5 +19,6 @@
     yazi
     zoxide
     just
+    panache
   ];
 }
