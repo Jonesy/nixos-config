@@ -1,8 +1,10 @@
 {...}: {
   imports = [
-    ./slstatus
-    ./somebar
-    ./sway
+    # ./slstatus
+    # ./somebar
+    # ./someblocks
+    # ./sway
+    ./dwlb
     ./swayidle.nix
     ./waybar
     ./wofi.nix

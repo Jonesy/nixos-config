@@ -67,30 +67,33 @@
     executable = true;
     text = ''
       #!/bin/sh
-      # Kill already running services
-      pkill -9 -x waybar mako swaybg swayidle
-
       # Required for starting from at TTY
       export XDG_CURRENT_DESKTOP=wlroots
       export XDG_SESSION_TYPE=wayland
       export XDG_SESSION_DESKTOP=wlroots
 
+
+      # Kill already running services
+      pkill -x mako swaybg swayidle dwlb 2>/dev/null || true
+
       # Tell dwl about dbus
       ${dbusActivate} --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-      systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      echo "imported WAYLAND_DISPLAY=$WAYLAND_DISPLAY pid=$$" >> /tmp/dwl-start.log
+      ${dbusActivate} --systemd --all
+      ${pkgs.systemd}/bin/systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-      waybar &
-      mako &
-      swaybg --image /home/jjones/.dotfiles/wallpaper.jpg --output \"*\" &
-      foot --server &
-      swayidle -w \
+      ${pkgs.mako}/bin/mako &
+      ${pkgs.swaybg}/bin/swaybg --image /home/jjones/.dotfiles/wallpaper.jpg --output \"*\" &
+      ${pkgs.foot}/bin/foot --server &
+      ${pkgs.swayidle}/bin/swayidle -w \
           timeout 300 '${pkgs.waylock}/bin/waylock -c 000000' \
           timeout 360 '${pkgs.wlopm}/bin/wlopm --off "*"' \
           resume '${pkgs.wlopm}/bin/wlopm --on "*"' \
           timeout 600 '${pkgs.systemd}/bin/systemctl suspend' \
           before-sleep '${pkgs.waylock}/bin/waylock -c 000000' &
-      wait
+      while true; do
+          echo "Hello"
+          sleep 1
+      done | ${pkgs.dwlb}/bin/dwlb -font "monospace:size=12"
     '';
   };
 
