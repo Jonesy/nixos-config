@@ -72,6 +72,16 @@
       export XDG_SESSION_TYPE=wayland
       export XDG_SESSION_DESKTOP=wlroots
 
+      CURRENT_BATTERY=""
+      display_battery() {
+        local capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
+        CURRENT_BATTERY="󰁹 $capacity%"
+      }
+
+      display_bar() {
+        display_battery
+        echo "$CURRENT_BATTERY | $(date '+%b %d %I:%M:%S')"
+      }
 
       # Kill already running services
       pkill -x mako swaybg swayidle dwlb 2>/dev/null || true
@@ -90,10 +100,12 @@
           resume '${pkgs.wlopm}/bin/wlopm --on "*"' \
           timeout 600 '${pkgs.systemd}/bin/systemctl suspend' \
           before-sleep '${pkgs.waylock}/bin/waylock -c 000000' &
+      ${pkgs.dwlb}/bin/dwlb -ipc -font "${userSettings.fontFamilyTerm}:14" &
+      # sleep 0.5
       while true; do
-          echo "Hello"
+          ${pkgs.dwlb}/bin/dwlb -ipc -status all "$(display_bar)"
           sleep 1
-      done | ${pkgs.dwlb}/bin/dwlb -font "monospace:size=12"
+      done
     '';
   };
 

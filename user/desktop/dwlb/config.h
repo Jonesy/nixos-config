@@ -5,7 +5,7 @@
 	  .alpha = (hex & 0xff) * 257 }
 
 // use ipc functionality
-static bool ipc = false;
+static bool ipc = true;
 // initially hide all bars
 static bool hidden = false;
 // initially draw all bars at the bottom
@@ -25,7 +25,7 @@ static bool active_color_title = true;
 // scale
 static uint32_t buffer_scale = 1;
 // font
-static char *fontstr = "monospace:size=16";
+static char *fontstr = "monospace:size=12";
 // tag names
 static char *tags_names[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
