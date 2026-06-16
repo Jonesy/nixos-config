@@ -7,5 +7,23 @@
         text = builtins.readFile ../../scripts/devserver.sh;
       }
     )
+    (
+      pkgs.writeShellApplication {
+        name = "display_battery";
+        text = builtins.readFile ../../scripts/display_battery.sh;
+      }
+    )
+    (
+      pkgs.writeShellApplication {
+        name = "display_cpu";
+        text = builtins.readFile ../../scripts/display_cpu.sh;
+      }
+    )
+    (
+      pkgs.writeShellApplication {
+        name = "display_volume";
+        text = builtins.readFile ../../scripts/display_volume.sh;
+      }
+    )
   ];
 }

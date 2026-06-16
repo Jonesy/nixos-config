@@ -72,15 +72,8 @@
       export XDG_SESSION_TYPE=wayland
       export XDG_SESSION_DESKTOP=wlroots
 
-      CURRENT_BATTERY=""
-      display_battery() {
-        local capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
-        CURRENT_BATTERY="󰁹 $capacity%"
-      }
-
       display_bar() {
-        display_battery
-        echo "$CURRENT_BATTERY | $(date '+%b %d %I:%M:%S')"
+        echo "$(display_volume) | $(display_cpu) | $(display_battery ) | $(date '+%b %d %I:%M:%S')"
       }
 
       # Kill already running services
