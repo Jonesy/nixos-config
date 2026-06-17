@@ -73,7 +73,7 @@
       export XDG_SESSION_DESKTOP=wlroots
 
       display_bar() {
-        echo "$(display_brightness) |$(display_volume) | $(display_cpu) | $(display_battery ) | $(date '+%b %d %I:%M:%S')"
+        echo "$(display_brightness) | $(display_volume) | $(display_wifi) | $(display_cpu) | $(display_battery ) | $(date '+%b %d %I:%M:%S')"
       }
 
       # Kill already running services

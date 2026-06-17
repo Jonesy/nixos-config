@@ -27,6 +27,12 @@
     )
     (
       pkgs.writeShellApplication {
+        name = "display_wifi";
+        text = builtins.readFile ../../scripts/display_wifi.sh;
+      }
+    )
+    (
+      pkgs.writeShellApplication {
         name = "display_volume";
         text = builtins.readFile ../../scripts/display_volume.sh;
       }
