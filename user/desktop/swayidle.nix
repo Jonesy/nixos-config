@@ -1,4 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  systemd.user.services.swayidle = {
+    Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
+    Service = {
+      Restart = lib.mkForce "no";
+      RestartSec = lib.mkForce "";
+    };
+  };
+
   services.swayidle = let
     lockCmd = "${pkgs.waylock}/bin/waylock";
     suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";

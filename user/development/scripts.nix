@@ -15,6 +15,12 @@
     )
     (
       pkgs.writeShellApplication {
+        name = "display_brightness";
+        text = builtins.readFile ../../scripts/display_brightness.sh;
+      }
+    )
+    (
+      pkgs.writeShellApplication {
         name = "display_cpu";
         text = builtins.readFile ../../scripts/display_cpu.sh;
       }

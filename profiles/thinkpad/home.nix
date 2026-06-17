@@ -73,7 +73,7 @@
       export XDG_SESSION_DESKTOP=wlroots
 
       display_bar() {
-        echo "$(display_volume) | $(display_cpu) | $(display_battery ) | $(date '+%b %d %I:%M:%S')"
+        echo "$(display_brightness) |$(display_volume) | $(display_cpu) | $(display_battery ) | $(date '+%b %d %I:%M:%S')"
       }
 
       # Kill already running services
@@ -94,7 +94,6 @@
           timeout 600 '${pkgs.systemd}/bin/systemctl suspend' \
           before-sleep '${pkgs.waylock}/bin/waylock -c 000000' &
       ${pkgs.dwlb}/bin/dwlb -ipc -font "${userSettings.fontFamilyTerm}:14" &
-      # sleep 0.5
       while true; do
           ${pkgs.dwlb}/bin/dwlb -ipc -status all "$(display_bar)"
           sleep 1
