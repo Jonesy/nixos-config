@@ -37,5 +37,11 @@
         text = builtins.readFile ../../scripts/display_volume.sh;
       }
     )
+    (
+      pkgs.writeShellApplication {
+        name = "print_screen";
+        text = builtins.readFile ../../scripts/print_screen.sh;
+      }
+    )
   ];
 }

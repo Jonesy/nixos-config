@@ -7,7 +7,6 @@
     Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
     Service = {
       Restart = lib.mkForce "no";
-      RestartSec = lib.mkForce "";
     };
   };
 

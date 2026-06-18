@@ -9,5 +9,6 @@
     ./waybar
     ./wofi.nix
     ./mako.nix
+    ./screenshot.nix
   ];
 }
