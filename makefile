@@ -2,6 +2,11 @@
 switch:
 		home-manager switch --flake .#thinkpad
 
+.PHONY: flake
+flake:
+		sudo nixos-rebuild switch --flake .#nixos
+
+
 .PHONY: clean
 clean:
 		sudo nix-collect-garbage --delete-older-than 30d

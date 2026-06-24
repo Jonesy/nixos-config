@@ -7,4 +7,4 @@ if [ "$wifi_network" = "" ]; then
   icon="󱚵"
 fi
 
-printf "^fg(FDF4AF)%s  ^fg()%s (%s%%)" "$icon" "$wifi_network" "$signal"
+printf "^fg(37f499)%s  ^fg()%s (%s%%)" "$icon" "$wifi_network" "$signal"

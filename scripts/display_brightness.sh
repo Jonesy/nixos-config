@@ -9,4 +9,4 @@ elif [ "$brightness_percentage" -lt 65 ]; then icon="󰃟"
 else icon="󰃠"
 fi
 
-printf "%s  %s%%" "$icon" "$brightness_percentage"
+printf "^fg(FDF4AF)%s ^fg() %s%%" "$icon" "$brightness_percentage"

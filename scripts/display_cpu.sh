@@ -1,4 +1,4 @@
 #!/bin/sh
 cpu=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
 
-printf "  %s\n" "$cpu"
+printf "^fg(f265b5) ^fg() %s\n" "$cpu"

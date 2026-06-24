@@ -6,7 +6,7 @@
     # ./sway
     ./dwlb
     ./swayidle.nix
-    ./waybar
+    # ./waybar
     ./wofi.nix
     ./mako.nix
     ./screenshot.nix

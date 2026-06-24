@@ -13,4 +13,4 @@ else
   icon="󰕾" 
 fi
 
-printf "%s %s%%\n" "$icon" "$volume_percentage"
+printf "^fg(04d1f9)%s^fg() %s%%\n" "$icon" "$volume_percentage"

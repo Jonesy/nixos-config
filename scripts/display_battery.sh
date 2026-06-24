@@ -11,4 +11,4 @@ elif [ "$capacity" -lt 90 ]; then icon="󰂁"
 else icon="󰁹" 
 fi
 
-printf "%s %s%%\n" "$icon" "$capacity"
+printf "^fg(f16c75)%s^fg() %s%%\n" "$icon" "$capacity"

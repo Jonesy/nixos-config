@@ -122,8 +122,14 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { 
   "wmenu-run", 
-  "-f", "IosevkaTerm Nerd Font 16",
+  "-f", "IosevkaTerm Nerd Font 14",
   "-l", "10",
+  "-N", "212337",
+  "-n", "ebfafa", 
+  "-M", "323449", 
+  "-m", "ebfafa", 
+  "-S", "37f499", 
+  "-s", "212337",
   NULL
 };
 static const char *volumedowncmd[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL};
@@ -174,6 +180,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                     7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                    8),
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,             {0} },
+  // TODO: Wireup print screen XK_Print
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
